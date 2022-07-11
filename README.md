@@ -12,9 +12,9 @@ Diet Planner is an app where bodybuilders can create a daily meal plan with the 
 6. I want to be able to update my diet by editing, removing, or adding meals or ingredients.
 
 ## Wireframes
-![image](./wireframe1.png)
-![image](./wireframe2.png)
-![image](./wireframe3.png)
+![image](./images/wireframe1.png)
+![image](./images/wireframe2.png)
+![image](./images/wireframe3.png)
 
 ## ERD
-![image](./ERD.png)
+![image](./images/ERD.png)
