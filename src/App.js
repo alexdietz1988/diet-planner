@@ -3,19 +3,22 @@
 // username, password
 
 import './App.css'
-import Landing from './pages/Landing'
 import Signup from './pages/Signup'
-import { Route, Routes } from "react-router-dom"
+import Login from './pages/Login'
+import { Route, Routes, Link } from "react-router-dom"
 
 function App() {
   let backend = 'http://localhost:4000/'
 
   return (
     <>
-      <p>Diet Planner</p>
+      <h1>Diet Planner</h1>
+        <p>A simple tool for planning a diet to help you bulk, cut, or maintain.</p>
+        <p><Link to='/signup'>Signup</Link> | <Link to='/login'>Login</Link></p>
+
       <Routes>
-        <Route path='/home' element={<Landing />} />
         <Route path='/signup' element={<Signup backend={backend} />} />
+        <Route path='/login' element={<Login backend={backend} />} />
       </Routes>
     </>
   )
