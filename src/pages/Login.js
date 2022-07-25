@@ -1,11 +1,17 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import UserHome from "./UserHome"
 
 function Login(props) {
+    let navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     })
+
+    const [invalidEntry, setInvalidEntry] = useState(false)
 
     function handleChange(e) {
         setFormData((prevState) => ({
@@ -22,7 +28,13 @@ function Login(props) {
             password: formData.password
         })
         .then((response) => {
-            console.log(response)
+            if (response.data === 'invalid username or password') {
+                setInvalidEntry(true)
+            }
+            else if (response.data === 'successfully logged in') {
+                props.setUser(formData.username)
+                navigate('/userhome')
+            }
         })
         .catch((error) => console.log(error))
     }
@@ -45,6 +57,8 @@ function Login(props) {
                 <input type="submit" value="Submit" />
             </div>
         </form>
+
+        {invalidEntry ? <p>Invalid username or password.</p> : null}
         </>
     )
 }
