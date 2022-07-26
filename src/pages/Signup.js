@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import UserHome from "./UserHome"
 
 function Signup(props) {
     let navigate = useNavigate()
@@ -27,6 +26,7 @@ function Signup(props) {
             password: formData.password
         })
         .then((response) => {
+            console.log(response.data)
             if (response.data === 'user already exists') {
                 setUserAlreadyExists(true)
             }

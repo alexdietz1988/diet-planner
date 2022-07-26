@@ -1,8 +1,3 @@
-// POST '/auth/signup'
-// POST '/auth/login'
-// username, password
-
-import './App.css'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import UserHome from './pages/UserHome'
@@ -29,7 +24,7 @@ function App() {
       <Routes>
         <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />
         <Route path='/login' element={<Login backend={backend} setUser={setUser} user={user}/>} />
-        <Route path='/userhome' element={<UserHome user={user}/>}/>
+        <Route path='/userhome' element={<UserHome user={user} backend={backend}/>}/>
       </Routes>
     </>
   )

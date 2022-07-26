@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import UserHome from "./UserHome"
 
 function Login(props) {
     let navigate = useNavigate()
