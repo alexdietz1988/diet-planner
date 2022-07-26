@@ -20,7 +20,7 @@ function EditUserInfo(props) {
     function handleSubmit(e) {
         e.preventDefault()
         axios.put(props.backend + 'userinfo/?username=' + props.user, {
-            username: formData.username,
+            username: props.user,
             weight: formData.weight,
             goal: formData.goal
         })
@@ -37,7 +37,7 @@ function EditUserInfo(props) {
     return(
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="text">Weight</label><br />
+                <label htmlFor="weight">Weight</label><br />
                 <input type="text" name="weight" id="weight" onChange={handleChange}/>
             </div>
 
