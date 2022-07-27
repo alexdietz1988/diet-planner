@@ -57,6 +57,7 @@ function Dashboard(props) {
                             Protein: {meal.protein}
                         </p>
                         <button onClick={() => deleteMeal(meal._id)}>Delete Meal</button>
+                        <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>Edit Meal</Link>
                     </div>
                 ))}
                 <Link to='/add-meal'>Add a meal</Link>
