@@ -1,9 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 function AddMeal(props) {
-    let navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: '',
         calories: '',
@@ -18,7 +16,6 @@ function AddMeal(props) {
     }
 
     function handleSubmit(e) {
-        console.log(formData)
         e.preventDefault()
         axios.post(props.backend + 'meal/?username=' + props.user, {
             username: props.user,
@@ -28,7 +25,7 @@ function AddMeal(props) {
         })
         .then((response) => {
             if (response.data === 'successfully added meal') {
-                navigate('/userhome')
+                props.getUserInfo()
             }
         })
         .catch((error) => console.log(error))

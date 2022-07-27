@@ -1,6 +1,7 @@
+import Landing from './pages/Landing'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
-import UserHome from './pages/UserHome'
+import Dashboard from './pages/Dashboard'
 import { Route, Routes, Link, useNavigate } from "react-router-dom"
 import { useState } from 'react'
 
@@ -22,9 +23,10 @@ function App() {
         {user === '' ? <><Link to='/signup'>Signup</Link> | <Link to='/login'>Login</Link></> : <button onClick={logout}>Logout</button>}
 
       <Routes>
+        <Route exact path='/' element={<Landing />} />
         <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />
         <Route path='/login' element={<Login backend={backend} setUser={setUser} user={user}/>} />
-        <Route path='/userhome' element={<UserHome user={user} backend={backend}/>}/>
+        <Route path='/dashboard' element={<Dashboard user={user} backend={backend}/>}/>
       </Routes>
     </>
   )

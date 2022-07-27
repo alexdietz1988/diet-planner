@@ -20,7 +20,6 @@ function Login(props) {
     }
 
     function handleSubmit(e) {
-        console.log(formData)
         e.preventDefault()
         axios.post(props.backend + 'auth/login', {
             username: formData.username,
@@ -32,7 +31,7 @@ function Login(props) {
             }
             else if (response.data === 'successfully logged in') {
                 props.setUser(formData.username)
-                navigate('/userhome')
+                navigate('/dashboard')
             }
         })
         .catch((error) => console.log(error))

@@ -28,7 +28,6 @@ function EditUserInfo(props) {
             if (response.data === 'successfully updated user info') {
                 props.setWeight(formData.weight)
                 props.setGoal(formData.goal)
-                navigate('/userhome')
             }
         })
         .catch((error) => console.log(error))

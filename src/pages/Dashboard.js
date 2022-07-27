@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import EditUserInfo from "./EditUserInfo"
 import AddMeal from "./AddMeal"
 
-function UserHome(props) {
+function Dashboard(props) {
 
     const [weight, setWeight] = useState('')
     const [goal, setGoal] = useState('')
@@ -49,11 +49,11 @@ function UserHome(props) {
                 ))}
 
                 <h3>Add a meal</h3>
-                <AddMeal backend={props.backend} user={props.user}/>
+                <AddMeal backend={props.backend} user={props.user} getUserInfo={getUserInfo}/>
                 
             </section>
         </>
     )
 }
 
-export default UserHome
+export default Dashboard
