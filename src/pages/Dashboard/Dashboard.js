@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import DashboardUI from "./DashboardUI"
 
 function Dashboard(props) {
     const [meals, setMeals] = useState([])
+    const [calorieTotal, setCalorieTotal] = useState(0)
+    const [proteinTotal, setProteinTotal] = useState(0)
 
     function getUserInfo() {
         axios.get(props.backend + 'userinfo/?username=' + props.user)
@@ -17,6 +19,13 @@ function Dashboard(props) {
     function getMeals() {
         axios.get(props.backend + 'meal/?username=' + props.user)
             .then((response) => {
+                let [calories, protein] = [0,0]
+                for (let meal of response.data) {
+                    calories += parseInt(meal.calories)
+                    protein += parseInt(meal.protein)
+                }
+                setCalorieTotal(calories)
+                setProteinTotal(protein)
                 setMeals(response.data)
             })
             .catch((error) => console.log(error))
@@ -34,36 +43,7 @@ function Dashboard(props) {
 
     useEffect(() => {getUserInfo(); getMeals()}, [])
 
-    return(
-        <>
-            <p><em>Logged in as {props.user}</em></p>
-
-            <section>
-                <h2>Basics</h2>
-                <p>
-                    <b>Your weight:</b> {props.weight}<br />
-                    <b>Your goal:</b> {props.goal}
-                </p>
-                <Link to='/edit-user-info'>Update your weight or goal</Link>
-            </section>
-
-            <section>
-                <h2>Your diet</h2>
-                {meals.map(meal => (
-                    <div key={meal._id}>
-                        <p>
-                            Name: {meal.name}<br />
-                            Calories: {meal.calories}<br />
-                            Protein: {meal.protein}
-                        </p>
-                        <button onClick={() => deleteMeal(meal._id)}>Delete Meal</button>
-                        <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>Edit Meal</Link>
-                    </div>
-                ))}
-                <Link to='/add-meal'>Add a meal</Link>
-            </section>
-        </>
-    )
+    return <DashboardUI user={props.user} weight={props.weight} goal={props.goal} meals={meals} deleteMeal={deleteMeal} setMeal={props.setMeal} calorieTotal={calorieTotal} proteinTotal={proteinTotal}/>
 }
 
 export default Dashboard
