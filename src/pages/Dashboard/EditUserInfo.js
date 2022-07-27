@@ -6,7 +6,8 @@ function EditUserInfo(props) {
     let navigate = useNavigate()
     const [formData, setFormData] = useState({
         weight: props.weight,
-        goal: props.goal
+        goal: props.goal,
+        TDEE: props.TDEE
     })
 
     function handleChange(e) {
@@ -21,7 +22,8 @@ function EditUserInfo(props) {
         axios.put(props.backend + 'userinfo/?username=' + props.user, {
             username: props.user,
             weight: formData.weight,
-            goal: formData.goal
+            goal: formData.goal,
+            TDEE: formData.TDEE
         })
         .then((response) => {
             if (response.data === 'successfully updated user info') {
@@ -43,6 +45,11 @@ function EditUserInfo(props) {
             <div>
                 <label htmlFor="goal">Goal</label><br />
                 <input type="text" name="goal" id="goal" value={formData.goal} onChange={handleChange}/>
+            </div>
+
+            <div>
+                <label htmlFor="TDEE">TDEE</label><br />
+                <input type="text" name="TDEE" id="TDEE" value={formData.TDEE} onChange={handleChange}/>
             </div>
 
             <div>

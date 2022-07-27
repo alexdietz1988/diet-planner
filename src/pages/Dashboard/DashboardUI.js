@@ -9,9 +9,10 @@ function DashboardUI(props) {
                 <h2>Basics</h2>
                 <p>
                     <b>Your weight:</b> {props.weight}<br />
-                    <b>Your goal:</b> {props.goal}
+                    <b>Your goal:</b> {props.goal}<br />
+                    <b>Your TDEE:</b> {props.TDEE}
                 </p>
-                <Link to='/edit-user-info'>Update your weight or goal</Link>
+                <Link to='/edit-user-info'><button>Update</button></Link>
             </section>
 
             <section>
@@ -34,10 +35,7 @@ function DashboardUI(props) {
 
             <section>
                 <h2>Analysis</h2>
-                <p>
-                    Total calories: {props.calorieTotal}<br />
-                    Total protein: {props.proteinTotal}
-                </p>
+                {props.analyzeDiet()}
             </section>
         </>
     )

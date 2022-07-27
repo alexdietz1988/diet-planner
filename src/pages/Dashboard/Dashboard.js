@@ -12,6 +12,7 @@ function Dashboard(props) {
             .then((response) => {
                 props.setWeight(response.data.weight)
                 props.setGoal(response.data.goal)
+                props.setTDEE(response.data.TDEE)
             })
             .catch((error) => console.log(error))
     }
@@ -41,9 +42,46 @@ function Dashboard(props) {
         .catch((error) => console.log(error))
     }
 
+    function analyzeDiet() {
+        const targets = {
+            'cut': {calories: props.TDEE * 0.75, protein: props.weight * 1.1},
+            'maintain': {calories: props.TDEE, protein: props.weight},
+            'bulk': {calories: props.TDEE * 1.1, protein: props.weight}
+        }
+
+        let calorieTarget = targets[props.goal].calories
+        let proteinTarget = targets[props.goal].protein
+
+        let calorieDifference = calorieTarget - calorieTotal
+        let proteinDifference = proteinTarget - proteinTotal
+
+        const calorieMessage = calorieDifference > 0 ? `You have room for ${calorieDifference} more calories!` : `You are ${-1 * calorieDifference} calories over your limit!`
+        const proteinMessage = proteinDifference > 0 ? `You need ${proteinDifference} more grams of protein!` : `You are getting a surplus of ${proteinDifference} grams of protein!`
+
+        return(
+            <>
+            <section>
+                <h3>Calories</h3>
+                <p>
+                    Target: {calorieTarget}, Current Intake: {calorieTotal}<br />
+                    {calorieMessage}
+                </p>
+            </section>
+
+            <section>
+                <h3>Protein</h3>
+                <p>
+                    Target: {proteinTarget}, Current Intake: {proteinTotal}<br />
+                    {proteinMessage}
+                </p>
+            </section>
+            </>
+        )
+    }
+
     useEffect(() => {getUserInfo(); getMeals()}, [])
 
-    return <DashboardUI user={props.user} weight={props.weight} goal={props.goal} meals={meals} deleteMeal={deleteMeal} setMeal={props.setMeal} calorieTotal={calorieTotal} proteinTotal={proteinTotal}/>
+    return <DashboardUI user={props.user} weight={props.weight} goal={props.goal} TDEE={props.TDEE} meals={meals} deleteMeal={deleteMeal} setMeal={props.setMeal} calorieTotal={calorieTotal} proteinTotal={proteinTotal} analyzeDiet={analyzeDiet}/>
 }
 
 export default Dashboard
