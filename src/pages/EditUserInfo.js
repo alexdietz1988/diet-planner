@@ -2,12 +2,11 @@ import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-
 function EditUserInfo(props) {
     let navigate = useNavigate()
     const [formData, setFormData] = useState({
-        weight: '',
-        goal: ''
+        weight: props.weight,
+        goal: props.goal
     })
 
     function handleChange(e) {
@@ -26,29 +25,31 @@ function EditUserInfo(props) {
         })
         .then((response) => {
             if (response.data === 'successfully updated user info') {
-                props.setWeight(formData.weight)
-                props.setGoal(formData.goal)
+                navigate('/dashboard')
             }
         })
         .catch((error) => console.log(error))
     }
 
     return(
+        <>
+        <h3>Edit your weight and goal</h3>
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="weight">Weight</label><br />
-                <input type="text" name="weight" id="weight" onChange={handleChange}/>
+                <input type="text" name="weight" id="weight" value={formData.weight} onChange={handleChange}/>
             </div>
 
             <div>
                 <label htmlFor="goal">Goal</label><br />
-                <input type="text" name="goal" id="goal" onChange={handleChange}/>
+                <input type="text" name="goal" id="goal" value={formData.goal} onChange={handleChange}/>
             </div>
 
             <div>
                 <input type="submit" value="Submit" />
             </div>
         </form>
+        </>
     )
 }
 
