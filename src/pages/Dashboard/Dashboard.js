@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import AddMeal from "./AddMeal"
 import { Link } from "react-router-dom"
 
 function Dashboard(props) {
@@ -13,7 +12,9 @@ function Dashboard(props) {
                 props.setGoal(response.data.goal)
             })
             .catch((error) => console.log(error))
-        
+    }
+
+    function getMeals() {
         axios.get(props.backend + 'meal/?username=' + props.user)
             .then((response) => {
                 setMeals(response.data)
@@ -21,7 +22,17 @@ function Dashboard(props) {
             .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getUserInfo()}, [])
+    function deleteMeal(mealId) {
+        axios.delete(props.backend + 'meal/?id=' + mealId)
+            .then((response) => {
+                if (response.data === 'successfully deleted meal') {
+                    getMeals()
+                }
+        })
+        .catch((error) => console.log(error))
+    }
+
+    useEffect(() => {getUserInfo(); getMeals()}, [])
 
     return(
         <>
@@ -45,6 +56,7 @@ function Dashboard(props) {
                             Calories: {meal.calories}<br />
                             Protein: {meal.protein}
                         </p>
+                        <button onClick={() => deleteMeal(meal._id)}>Delete Meal</button>
                     </div>
                 ))}
                 <Link to='/add-meal'>Add a meal</Link>
