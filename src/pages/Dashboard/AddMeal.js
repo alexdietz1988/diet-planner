@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function AddMeal(props) {
+    let navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: '',
         calories: '',
@@ -25,13 +27,15 @@ function AddMeal(props) {
         })
         .then((response) => {
             if (response.data === 'successfully added meal') {
-                props.getUserInfo()
+                navigate('/dashboard')
             }
         })
         .catch((error) => console.log(error))
     }
 
     return(
+        <>
+        <h3>Add a meal</h3>
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Name</label><br />
@@ -52,6 +56,7 @@ function AddMeal(props) {
                 <input type="submit" value="Submit" />
             </div>
         </form>
+        </>
     )
 }
 

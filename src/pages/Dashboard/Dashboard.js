@@ -47,10 +47,7 @@ function Dashboard(props) {
                         </p>
                     </div>
                 ))}
-
-                <h3>Add a meal</h3>
-                <AddMeal backend={props.backend} user={props.user} getUserInfo={getUserInfo}/>
-                
+                <Link to='/add-meal'>Add a meal</Link>
             </section>
         </>
     )

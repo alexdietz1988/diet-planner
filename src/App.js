@@ -1,8 +1,11 @@
 import Landing from './pages/Landing'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import EditUserInfo from './pages/EditUserInfo'
+
+import Dashboard from './pages/Dashboard/Dashboard'
+import EditUserInfo from './pages/Dashboard/EditUserInfo'
+import AddMeal from './pages/Dashboard/AddMeal'
+
 import { Route, Routes, Link, useNavigate } from "react-router-dom"
 import { useState } from 'react'
 
@@ -32,6 +35,7 @@ function App() {
         <Route path='/login' element={<Login backend={backend} setUser={setUser} user={user}/>} />
         <Route path='/dashboard' element={<Dashboard backend={backend} user={user} setWeight={setWeight} setGoal={setGoal} weight={weight} goal={goal}/>}/>
         <Route path='/edit-user-info' element={<EditUserInfo backend={backend} user={user} setWeight={setWeight} setGoal={setGoal} weight={weight} goal={goal}/>}/>
+        <Route path='add-meal' element={<AddMeal backend={backend} user={user} />} />
       </Routes>
     </>
   )
