@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom"
 
 function DashboardUI(props) {
+    let calorieDifference = props.targets.calories - props.dietTotals.calories
+    let proteinDifference = props.targets.protein - props.dietTotals.protein
+    
+    let calorieMessage = calorieDifference > 0 ?
+        `You have room for ${calorieDifference} more calories!`
+        : `You are ${-1 * calorieDifference} calories over your limit!`
+
+    let proteinMessage = proteinDifference > 0 ?
+        `You need ${proteinDifference} more grams of protein!`
+        : `You are consuming a surplus of ${-1 * proteinDifference} grams of protein!`
+
     return(
         <>
             <p><em>Logged in as {props.user}</em></p>
@@ -38,14 +49,18 @@ function DashboardUI(props) {
 
                 <div>
                     <h3>Calories</h3>
-                    <p>Target: {props.targets.calories}, Current Intake: {props.dietTotals.calories}</p>
-                    {props.targets.calories - props.dietTotals.calories > 0 ? <p>You have room for {props.targets.calories - props.dietTotals.calories} more calories!</p> : <p>`You are ${props.dietTotals.calories - props.targets.calories} calories over your limit!`</p>}
+                    <p>
+                        Target: {props.targets.calories}, Current Intake: {props.dietTotals.calories}<br />
+                        {calorieMessage}
+                    </p>
                 </div>
 
                 <div>
                     <h3>Protein</h3>
-                    <p>Target: {props.targets.protein}, Current Intake: {props.dietTotals.protein}</p>
-                    {props.targets.protein - props.dietTotals.protein > 0 ? <p>You have room for {props.targets.protein - props.dietTotals.protein} more calories!</p> : <p>`You are ${props.dietTotals.protein - props.targets.protein} calories over your limit!`</p>}
+                    <p>
+                        Target: {props.targets.protein}, Current Intake: {props.dietTotals.protein}<br />
+                        {proteinMessage}
+                    </p>
                 </div>
 
             </section>

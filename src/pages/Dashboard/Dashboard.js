@@ -12,16 +12,9 @@ function Dashboard(props) {
             .then((response) => {
                 props.setBasics({weight: parseInt(response.data.weight), goal: response.data.goal, TDEE: parseInt(response.data.TDEE)})
                 switch(props.goal) {
-                    case 'cut':
-                        setTargets({calories: props.basics.TDEE * 0.75, protein: props.basics.weight * 1.1})
-                        break
-                
-                    case 'bulk':
-                        setTargets({calories: props.basics.TDEE * 1.1, protein: props.basics.weight})
-                        break
-        
-                    default:
-                        setTargets({calories: props.basics.TDEE, protein: props.basics.weight})
+                    case 'cut': setTargets({calories: props.basics.TDEE * 0.75, protein: props.basics.weight * 1.1}); break
+                    case 'bulk': setTargets({calories: props.basics.TDEE * 1.1, protein: props.basics.weight}); break
+                    default: setTargets({calories: props.basics.TDEE, protein: props.basics.weight})
                 }
             })
             .catch((error) => console.log(error))

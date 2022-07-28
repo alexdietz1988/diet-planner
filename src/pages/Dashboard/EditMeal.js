@@ -20,7 +20,6 @@ function EditMeal(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(formData)
         axios.put(props.backend + 'meal/?id=' + props.meal.id, {
             username: props.user,
             name: formData.name,
