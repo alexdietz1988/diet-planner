@@ -14,21 +14,20 @@ function DashboardUI(props) {
 
     return(
         <>
-            <p><em>Logged in as {props.user}</em></p>
-
-            <section>
-                <h2>Basics</h2>
-                <ul>
+            <section class="section">
+                <h4 class="title is-4">Basics</h4>
+                <ul class="block">
                     <li>You weigh <b>{props.basics.weight}</b> pounds.</li>
-                    <li>You burn about <b>{props.basics.TDEE}</b> calories per day.</li>
+                    <li>You're burning <b>{props.basics.TDEE}</b> calories per day.</li>
                     <li>Your current goal is to <b>{props.basics.goal}</b>.</li>
                 </ul>
                 
                 <Link to='/edit-basics'><button class="button is-small is-warning">Update</button></Link>
             </section>
 
-            <section>
-                <h2>Your diet</h2>
+            <section class="section">
+                <h4 class="title is-4">Your diet</h4>
+
                 <table class="table">
                 <thead>
                     <tr>
@@ -51,15 +50,18 @@ function DashboardUI(props) {
                         </td>
                     </tr>
                 ))}
+                <tr>
+                    <td><Link to='/add-meal'><button class="button is-small is-info">Add a meal</button></Link></td>
+                </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Total</th>
+                        <th>Totals</th>
                         <th>{props.dietTotals.calories}</th>
                         <th>{props.dietTotals.protein}</th>
                     </tr>
                     <tr>
-                        <th>Target</th>
+                        <th>Targets</th>
                         <th>{props.targets.calories}</th>
                         <th>{props.targets.protein}</th>
                     </tr>
@@ -68,8 +70,7 @@ function DashboardUI(props) {
 
                 <p>{calorieMessage}</p>
                 <p>{proteinMessage}</p>
-
-                <Link to='/add-meal'><button class="button is-small is-info">Add a meal</button></Link>
+                
             </section>
         </>
     )

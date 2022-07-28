@@ -1,3 +1,4 @@
+import Header from './components/Header'
 import Landing from './pages/Landing'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
@@ -7,7 +8,7 @@ import EditBasics from './pages/Dashboard/EditBasics'
 import AddMeal from './pages/Dashboard/AddMeal'
 import EditMeal from './pages/Dashboard/EditMeal'
 
-import { Route, Routes, Link, useNavigate } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import { useState } from 'react'
 
 function App() {
@@ -25,11 +26,8 @@ function App() {
 
   return (
     <>
-      <h1>Diet Planner</h1>
-        <p>A simple tool for planning a diet to help you bulk, cut, or maintain.</p>
-        
-        {user === '' ? <><Link to='/signup'>Signup</Link> | <Link to='/login'>Login</Link></> : <><Link class="button is-small" to='/dashboard'>Dashboard</Link> <button class="button is-small is-light" onClick={logout}>Logout</button></>}
-
+      <Header user={user} logout={logout}/>
+      <div class="container">
       <Routes>
         <Route exact path='/' element={<Landing />} />
         <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />
@@ -39,6 +37,7 @@ function App() {
         <Route path='add-meal' element={<AddMeal backend={backend} user={user} />} />
         <Route path='edit-meal' element={<EditMeal backend={backend} user={user} meal={meal} setMeal={setMeal}/>} />
       </Routes>
+      </div>
     </>
   )
 }

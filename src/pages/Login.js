@@ -39,7 +39,7 @@ function Login(props) {
 
     return(
         <>
-        <h2>Login</h2>
+        <h4 class="title is-4">Login</h4>
         <form onSubmit={handleSubmit}>
             <div class="field">
                 <label class="label" htmlFor="username">Username</label>

@@ -40,7 +40,7 @@ function Signup(props) {
 
     return(
         <>
-        <h2>Signup</h2>
+        <h4 class="title is-4">Signup</h4>
         <form onSubmit={handleSubmit}>
             <div class="field">
                 <label class="label" htmlFor="username">Username</label>
