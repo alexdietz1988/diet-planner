@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom"
 function EditUserInfo(props) {
     let navigate = useNavigate()
     const [formData, setFormData] = useState({
-        weight: props.weight,
-        goal: props.goal,
-        TDEE: props.TDEE
+        weight: props.basics.weight,
+        goal: props.basics.goal,
+        TDEE: props.basics.TDEE
     })
 
     function handleChange(e) {
@@ -35,7 +35,7 @@ function EditUserInfo(props) {
 
     return(
         <>
-        <h3>Edit your weight and goal</h3>
+        <h3>Edit your basics</h3>
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="weight">Weight</label><br />
@@ -43,13 +43,17 @@ function EditUserInfo(props) {
             </div>
 
             <div>
-                <label htmlFor="goal">Goal</label><br />
-                <input type="text" name="goal" id="goal" value={formData.goal} onChange={handleChange}/>
+                <label htmlFor="TDEE">TDEE</label><br />
+                <input type="text" name="TDEE" id="TDEE" value={formData.TDEE} onChange={handleChange}/>
             </div>
 
             <div>
-                <label htmlFor="TDEE">TDEE</label><br />
-                <input type="text" name="TDEE" id="TDEE" value={formData.TDEE} onChange={handleChange}/>
+                <label htmlFor="goal">Goal</label><br />
+                <select name="goal" id="goal" value={formData.goal} onChange={handleChange}>
+                    <option value="cut">Cut</option>
+                    <option value="bulk">Bulk</option>
+                    <option value="maintain">Maintain</option>
+                </select>
             </div>
 
             <div>

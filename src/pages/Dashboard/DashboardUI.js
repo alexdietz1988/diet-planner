@@ -20,8 +20,8 @@ function DashboardUI(props) {
                 <h2>Basics</h2>
                 <p>
                     <b>Your weight:</b> {props.basics.weight}<br />
-                    <b>Your goal:</b> {props.basics.goal}<br />
-                    <b>Your TDEE:</b> {props.basics.TDEE}
+                    <b>Your TDEE:</b> {props.basics.TDEE}<br />
+                    <b>Your goal:</b> {props.basics.goal}
                 </p>
                 <Link to='/edit-user-info'><button>Update</button></Link>
             </section>
