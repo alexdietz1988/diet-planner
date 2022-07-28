@@ -18,7 +18,7 @@ function DashboardUI(props) {
                 <h4 class="title is-4">Basics</h4>
                 <ul class="block">
                     <li>You weigh <b>{props.basics.weight}</b> pounds.</li>
-                    <li>You're burning <b>{props.basics.TDEE}</b> calories per day.</li>
+                    <li>You burn <b>{props.basics.TDEE}</b> calories per day.</li>
                     <li>Your current goal is to <b>{props.basics.goal}</b>.</li>
                 </ul>
                 
@@ -41,7 +41,7 @@ function DashboardUI(props) {
                     <tr key={meal._id}>
                         <td>{meal.name}</td>
                         <td>{meal.calories}</td>
-                        <td>{meal.protein}</td>
+                        <td>{meal.protein} g</td>
                         <td>
                             <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
                                 <button class="button is-small is-warning mx-1">Edit</button>
@@ -58,12 +58,12 @@ function DashboardUI(props) {
                     <tr>
                         <th>Totals</th>
                         <th>{props.dietTotals.calories}</th>
-                        <th>{props.dietTotals.protein}</th>
+                        <th>{props.dietTotals.protein} g</th>
                     </tr>
                     <tr>
                         <th>Targets</th>
                         <th>{props.targets.calories}</th>
-                        <th>{props.targets.protein}</th>
+                        <th>{props.targets.protein} g</th>
                     </tr>
                 </tfoot>
                 </table>

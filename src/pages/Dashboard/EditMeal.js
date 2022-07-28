@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function EditMeal(props) {
     let navigate = useNavigate()
@@ -36,7 +36,7 @@ function EditMeal(props) {
 
     return(
         <>
-        <h3>Edit meal</h3>
+        <h4 class="title is-4">Edit meal</h4>
         <form onSubmit={handleSubmit}>
             <div class="field">
                 <label class="label" htmlFor="name">Name</label>
@@ -59,9 +59,12 @@ function EditMeal(props) {
                 </div>
             </div>
 
-            <div class="field">
+            <div class="field is-grouped">
                 <div class="control">
                     <input class="button is-link" type="submit" value="Submit" />
+                </div>
+                <div class="control">
+                    <Link class="button is-light" to='/dashboard'>Cancel</Link>
                 </div>
             </div>
         </form>

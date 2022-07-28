@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 
 function Header(props) {
+
     return(
         <nav class="navbar">
             <div class="navbar-brand">
-                <Link class="navbar-item" to='/dashboard'><b>Diet Planner</b></Link>
+                <Link class="navbar-item" to='/'><b>Diet Planner</b></Link>
 
                 {props.user === '' ? 
                     <>

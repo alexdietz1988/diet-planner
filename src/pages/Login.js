@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function Login(props) {
     let navigate = useNavigate()
@@ -55,9 +55,12 @@ function Login(props) {
                 </div>
             </div>
 
-            <div class="field">
+            <div class="field is-grouped">
                 <div class="control">
                     <input class="button is-link" type="submit" value="Submit" />
+                </div>
+                <div class="control">
+                    <Link class="button is-light" to='/'>Cancel</Link>
                 </div>
             </div>
         </form>

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function EditBasics(props) {
     let navigate = useNavigate()
@@ -35,7 +35,7 @@ function EditBasics(props) {
 
     return(
         <>
-        <h3>Edit your basics</h3>
+        <h4 class="title is-4">Edit your basics</h4>
         <form onSubmit={handleSubmit}>
             <div class="field">
                 <label class="label" htmlFor="weight">Weight</label>
@@ -64,8 +64,13 @@ function EditBasics(props) {
                 </div>
             </div>
 
-            <div class="field">
-                <input class="button is-link" type="submit" value="Submit" />
+            <div class="field is-grouped">
+                <div class="control">
+                    <input class="button is-link" type="submit" value="Submit" />
+                </div>
+                <div class="control">
+                    <Link class="button is-light" to='/dashboard'>Cancel</Link>
+                </div>
             </div>
         </form>
         </>
