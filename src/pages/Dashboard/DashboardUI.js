@@ -18,51 +18,58 @@ function DashboardUI(props) {
 
             <section>
                 <h2>Basics</h2>
-                <p>
-                    <b>Your weight:</b> {props.basics.weight}<br />
-                    <b>Your TDEE:</b> {props.basics.TDEE}<br />
-                    <b>Your goal:</b> {props.basics.goal}
-                </p>
+                <ul>
+                    <li>You weigh <b>{props.basics.weight}</b> pounds.</li>
+                    <li>You burn about <b>{props.basics.TDEE}</b> calories per day.</li>
+                    <li>Your current goal is to <b>{props.basics.goal}</b>.</li>
+                </ul>
+                
                 <Link to='/edit-basics'><button class="button is-small is-warning">Update</button></Link>
             </section>
 
             <section>
                 <h2>Your diet</h2>
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th>Meal</th>
+                        <th>Calories</th>
+                        <th>Protein</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {props.meals.map(meal => (
-                    <div key={meal._id}>
-                        <p>
-                            Name: {meal.name}<br />
-                            Calories: {meal.calories}<br />
-                            Protein: {meal.protein}
-                        </p>
-                        <button class="button is-small is-danger" onClick={() => props.deleteMeal(meal._id)}>Delete Meal</button>
-                        <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
-                            <button class="button is-small is-warning">Edit Meal</button>
-                        </Link>
-                    </div>
+                    <tr key={meal._id}>
+                        <td>{meal.name}</td>
+                        <td>{meal.calories}</td>
+                        <td>{meal.protein}</td>
+                        <td>
+                            <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
+                                <button class="button is-small is-warning mx-1">Edit</button>
+                                <button class="button is-small is-danger mx-1" onClick={() => props.deleteMeal(meal._id)}>Delete</button>
+                            </Link>
+                        </td>
+                    </tr>
                 ))}
-                <Link to='/add-meal'><button class="button is-info">Add a meal</button></Link>
-            </section>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th>{props.dietTotals.calories}</th>
+                        <th>{props.dietTotals.protein}</th>
+                    </tr>
+                    <tr>
+                        <th>Target</th>
+                        <th>{props.targets.calories}</th>
+                        <th>{props.targets.protein}</th>
+                    </tr>
+                </tfoot>
+                </table>
 
-            <section>
-                <h2>Analysis</h2>
+                <p>{calorieMessage}</p>
+                <p>{proteinMessage}</p>
 
-                <div>
-                    <h3>Calories</h3>
-                    <p>
-                        Target: {props.targets.calories}, Current Intake: {props.dietTotals.calories}<br />
-                        {calorieMessage}
-                    </p>
-                </div>
-
-                <div>
-                    <h3>Protein</h3>
-                    <p>
-                        Target: {props.targets.protein}, Current Intake: {props.dietTotals.protein}<br />
-                        {proteinMessage}
-                    </p>
-                </div>
-
+                <Link to='/add-meal'><button class="button is-small is-info">Add a meal</button></Link>
             </section>
         </>
     )

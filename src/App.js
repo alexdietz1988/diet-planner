@@ -28,7 +28,7 @@ function App() {
       <h1>Diet Planner</h1>
         <p>A simple tool for planning a diet to help you bulk, cut, or maintain.</p>
         
-        {user === '' ? <><Link to='/signup'>Signup</Link> | <Link to='/login'>Login</Link></> : <><Link to='/dashboard'>Dashboard</Link> | <button onClick={logout}>Logout</button></>}
+        {user === '' ? <><Link to='/signup'>Signup</Link> | <Link to='/login'>Login</Link></> : <><Link class="button is-small" to='/dashboard'>Dashboard</Link> <button class="button is-small is-light" onClick={logout}>Logout</button></>}
 
       <Routes>
         <Route exact path='/' element={<Landing />} />
