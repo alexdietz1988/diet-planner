@@ -3,7 +3,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 
 import Dashboard from './pages/Dashboard/Dashboard'
-import EditUserInfo from './pages/Dashboard/EditUserInfo'
+import EditBasics from './pages/Dashboard/EditBasics'
 import AddMeal from './pages/Dashboard/AddMeal'
 import EditMeal from './pages/Dashboard/EditMeal'
 
@@ -35,7 +35,7 @@ function App() {
         <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />
         <Route path='/login' element={<Login backend={backend} setUser={setUser} user={user}/>} />
         <Route path='/dashboard' element={<Dashboard backend={backend} user={user} basics={basics} setBasics={setBasics} setMeal={setMeal}/>}/>
-        <Route path='/edit-user-info' element={<EditUserInfo backend={backend} user={user} basics={basics} setBasics={setBasics}/>}/>
+        <Route path='/edit-basics' element={<EditBasics backend={backend} user={user} basics={basics} setBasics={setBasics}/>}/>
         <Route path='add-meal' element={<AddMeal backend={backend} user={user} />} />
         <Route path='edit-meal' element={<EditMeal backend={backend} user={user} meal={meal} setMeal={setMeal}/>} />
       </Routes>

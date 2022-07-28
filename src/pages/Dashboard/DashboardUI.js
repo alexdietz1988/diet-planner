@@ -23,7 +23,7 @@ function DashboardUI(props) {
                     <b>Your TDEE:</b> {props.basics.TDEE}<br />
                     <b>Your goal:</b> {props.basics.goal}
                 </p>
-                <Link to='/edit-user-info'><button>Update</button></Link>
+                <Link to='/edit-basics'><button class="button is-small is-warning">Update</button></Link>
             </section>
 
             <section>
@@ -35,13 +35,13 @@ function DashboardUI(props) {
                             Calories: {meal.calories}<br />
                             Protein: {meal.protein}
                         </p>
-                        <button onClick={() => props.deleteMeal(meal._id)}>Delete Meal</button>
+                        <button class="button is-small is-danger" onClick={() => props.deleteMeal(meal._id)}>Delete Meal</button>
                         <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
-                            <button>Edit Meal</button>
+                            <button class="button is-small is-warning">Edit Meal</button>
                         </Link>
                     </div>
                 ))}
-                <Link to='/add-meal'><button>Add a meal</button></Link>
+                <Link to='/add-meal'><button class="button is-info">Add a meal</button></Link>
             </section>
 
             <section>

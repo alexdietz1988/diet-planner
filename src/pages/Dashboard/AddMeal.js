@@ -37,23 +37,31 @@ function AddMeal(props) {
         <>
         <h3>Add a meal</h3>
         <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="name">Name</label><br />
-                <input type="text" name="name" id="name" onChange={handleChange}/>
+            <div class="field">
+                <label class="label" htmlFor="name">Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="name" id="name" onChange={handleChange}/>
+                </div>
             </div>
 
-            <div>
-                <label htmlFor="calories">Calories</label><br />
-                <input type="text" name="calories" id="calories" onChange={handleChange}/>
+            <div class="field">
+                <label class="label" htmlFor="calories">Calories</label>
+                <div class="control">
+                    <input class="input" type="number" name="calories" id="calories" onChange={handleChange}/>
+                </div>
             </div>
 
-            <div>
-                <label htmlFor="protein">Protein</label><br />
-                <input type="text" name="protein" id="protein" onChange={handleChange}/>
+            <div class="field">
+                <label class="label" htmlFor="protein">Protein</label>
+                <div class="control">
+                    <input class="input" type="number" name="protein" id="protein" onChange={handleChange}/>
+                </div>
             </div>
 
-            <div>
-                <input type="submit" value="Submit" />
+            <div class="field">
+                <div class="control">
+                    <input class="button is-link" type="submit" value="Submit" />
+                </div>
             </div>
         </form>
         </>

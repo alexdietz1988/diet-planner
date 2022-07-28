@@ -42,22 +42,27 @@ function Signup(props) {
         <>
         <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Username</label><br />
-                <input type="text" name="username" id="username" onChange={handleChange}/>
+            <div class="field">
+                <label class="label" htmlFor="username">Username</label>
+                <div class="control">
+                    <input class="input" type="text" name="username" id="username" onChange={handleChange}/>
+                </div>
+                {userAlreadyExists ? <p class="help is-danger">There's already an account with that username. If it's you, please login; otherwise, enter a different username.</p> : null}
             </div>
 
-            <div>
-                <label htmlFor="password">Password</label><br />
-                <input type="password" name="password" id="password" onChange={handleChange}/>
+            <div class="field">
+                <label class="label" htmlFor="password">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" id="password" onChange={handleChange}/>
+                </div>
             </div>
 
-            <div>
-                <input type="submit" value="Submit" />
+            <div class="field">
+                <div class="control">
+                    <input class="button is-link" type="submit" value="Submit" />
+                </div>
             </div>
         </form>
-
-        {userAlreadyExists ? <p>There's already an account with that username. If it's you, please login; otherwise, enter a different username.</p> : null}
         </>
     )
 }
