@@ -41,7 +41,7 @@ function DashboardUI(props) {
                         </Link>
                     </div>
                 ))}
-                <Link to='/add-meal'>Add a meal</Link>
+                <Link to='/add-meal'><button>Add a meal</button></Link>
             </section>
 
             <section>
