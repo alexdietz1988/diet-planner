@@ -8,9 +8,9 @@ function DashboardUI(props) {
             <section>
                 <h2>Basics</h2>
                 <p>
-                    <b>Your weight:</b> {props.weight}<br />
-                    <b>Your goal:</b> {props.goal}<br />
-                    <b>Your TDEE:</b> {props.TDEE}
+                    <b>Your weight:</b> {props.basics.weight}<br />
+                    <b>Your goal:</b> {props.basics.goal}<br />
+                    <b>Your TDEE:</b> {props.basics.TDEE}
                 </p>
                 <Link to='/edit-user-info'><button>Update</button></Link>
             </section>
@@ -35,7 +35,19 @@ function DashboardUI(props) {
 
             <section>
                 <h2>Analysis</h2>
-                {props.analyzeDiet()}
+
+                <div>
+                    <h3>Calories</h3>
+                    <p>Target: {props.targets.calories}, Current Intake: {props.dietTotals.calories}</p>
+                    {props.targets.calories - props.dietTotals.calories > 0 ? <p>You have room for {props.targets.calories - props.dietTotals.calories} more calories!</p> : <p>`You are ${props.dietTotals.calories - props.targets.calories} calories over your limit!`</p>}
+                </div>
+
+                <div>
+                    <h3>Protein</h3>
+                    <p>Target: {props.targets.protein}, Current Intake: {props.dietTotals.protein}</p>
+                    {props.targets.protein - props.dietTotals.protein > 0 ? <p>You have room for {props.targets.protein - props.dietTotals.protein} more calories!</p> : <p>`You are ${props.dietTotals.protein - props.targets.protein} calories over your limit!`</p>}
+                </div>
+
             </section>
         </>
     )

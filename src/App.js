@@ -15,9 +15,7 @@ function App() {
   let backend = 'http://localhost:4000/'
 
   const [user, setUser] = useState('')
-  const [weight, setWeight] = useState(0)
-  const [goal, setGoal] = useState('maintain')
-  const [TDEE, setTDEE] = useState(0)
+  const [basics, setBasics] = useState({weight: 0, goal: 'maintain', TDEE: 0})
   const [meal, setMeal] = useState({})
 
   function logout() {
@@ -36,8 +34,8 @@ function App() {
         <Route exact path='/' element={<Landing />} />
         <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />
         <Route path='/login' element={<Login backend={backend} setUser={setUser} user={user}/>} />
-        <Route path='/dashboard' element={<Dashboard backend={backend} user={user} setWeight={setWeight} setGoal={setGoal} TDEE={TDEE} setTDEE={setTDEE} weight={weight} goal={goal} setMeal={setMeal}/>}/>
-        <Route path='/edit-user-info' element={<EditUserInfo backend={backend} user={user} setWeight={setWeight} setGoal={setGoal} weight={weight} goal={goal} TDEE={TDEE} setTDEE={setTDEE}/>}/>
+        <Route path='/dashboard' element={<Dashboard backend={backend} user={user} basics={basics} setBasics={setBasics} setMeal={setMeal}/>}/>
+        <Route path='/edit-user-info' element={<EditUserInfo backend={backend} user={user} basics={basics} setBasics={setBasics}/>}/>
         <Route path='add-meal' element={<AddMeal backend={backend} user={user} />} />
         <Route path='edit-meal' element={<EditMeal backend={backend} user={user} meal={meal} setMeal={setMeal}/>} />
       </Routes>
