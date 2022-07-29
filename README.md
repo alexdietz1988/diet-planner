@@ -11,7 +11,8 @@ Diet Planner is an app where bodybuilders can create a daily meal plan with the 
 5. I want to see how my calorie and protein diet compare with recommended targets for my bodybuilding goal.
 6. I want to be able to update my diet by editing, removing, or adding meals or ingredients.
 
-## Wireframes
+## Screenshot and Wireframes
+![image](./images/screenshot.png)
 ![image](./images/wireframe1.png)
 ![image](./images/wireframe2.png)
 ![image](./images/wireframe3.png)
