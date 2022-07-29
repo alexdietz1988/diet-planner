@@ -37,6 +37,8 @@ function EditMeal(props) {
     return(
         <>
         <h4 class="title is-4">Edit meal</h4>
+
+        <section class="section">
         <form onSubmit={handleSubmit}>
             <div class="field">
                 <label class="label" htmlFor="name">Name</label>
@@ -68,6 +70,7 @@ function EditMeal(props) {
                 </div>
             </div>
         </form>
+        </section>
         </>
     )
 }

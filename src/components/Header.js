@@ -10,8 +10,8 @@ function Header(props) {
             </div>
             
             <div class="level-right">
-                <Link class="level-item" to='/signup'>Signup</Link>
-                <Link class="level-item" to='/login'>Login</Link>
+                <Link class="level-item button is-link" to='/signup'>Signup</Link>
+                <Link class="level-item button" to='/login'>Login</Link>
             </div>
             </>
         )
@@ -26,8 +26,8 @@ function Header(props) {
             </div>
 
             <div class="level-right">
-                <div class="level-item tag"><em>logged in as {props.user}</em></div>
-                <div class="level-item"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
+                <div class="level-item"><em class="tag">logged in as {props.user}</em></div>
+                <div class="level-item button"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
             </div>
             </>
         )

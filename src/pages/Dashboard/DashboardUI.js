@@ -22,7 +22,7 @@ function DashboardUI(props) {
                     <li>Your current goal is to <b>{props.basics.goal}</b>.</li>
                 </ul>
                 
-                <Link to='/edit-basics'><button class="button is-small is-warning">Update</button></Link>
+                <Link to='/edit-basics'><button class="button is-warning">Update</button></Link>
             </section>
 
             <section class="section">
@@ -43,15 +43,17 @@ function DashboardUI(props) {
                         <td>{meal.calories}</td>
                         <td>{meal.protein} g</td>
                         <td>
-                            <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
-                                <button class="button is-small is-warning mx-1">Edit</button>
-                                <button class="button is-small is-danger mx-1" onClick={() => props.deleteMeal(meal._id)}>Delete</button>
-                            </Link>
+                            <div class="tags">
+                                <Link to='/edit-meal' onClick={() => props.setMeal({id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
+                                    <div class="tag is-warning mx-1">Edit</div>
+                                </Link>
+                                <a class="tag is-danger mx-1" onClick={() => props.deleteMeal(meal._id)}>Delete</a>
+                            </div>
                         </td>
                     </tr>
                 ))}
                 <tr>
-                    <td><Link to='/add-meal'><button class="button is-small is-info">Add a meal</button></Link></td>
+                    <td><Link to='/add-meal'><button class="button is-info">Add a meal</button></Link></td>
                 </tr>
                 </tbody>
                 <tfoot>
