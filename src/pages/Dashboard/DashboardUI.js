@@ -1,26 +1,32 @@
 import { Link } from "react-router-dom"
 
 function DashboardUI(props) {
-    let calorieDifference = props.targets.calories - props.dietTotals.calories
-    let proteinDifference = props.targets.protein - props.dietTotals.protein
-    
-    let calorieMessage = calorieDifference > 0 ?
-        `You have room for ${calorieDifference} more calories!`
-        : `You are ${-1 * calorieDifference} calories over your limit!`
 
-    let proteinMessage = proteinDifference > 0 ?
-        `You need ${proteinDifference} more grams of protein!`
-        : `You are consuming a surplus of ${-1 * proteinDifference} grams of protein!`
+    function calorieMessage() {
+        let calorieDifference = props.targets.calories - props.dietTotals.calories
+
+        if (calorieDifference > 0) return <li>You have room for <b>{calorieDifference}</b> more calories.</li>
+        return <li>You are <b>{-calorieDifference}</b> calories over your limit.</li>
+    }
+
+    function proteinMessage() {
+        let proteinDifference = props.targets.protein - props.dietTotals.protein
+
+        if (proteinDifference > 0) return <li>You need <b>{proteinDifference}</b> more grams of protein.</li>
+        return <li>You are consuming a surplus of <b>{-proteinDifference}</b> grams of protein.</li>
+    }
 
     return(
         <>
             <section class="section">
                 <h4 class="title is-4">Basics</h4>
-                <ul class="block">
+                <div class="content">
+                <ul>
                     <li>You weigh <b>{props.basics.weight}</b> pounds.</li>
                     <li>You burn <b>{props.basics.TDEE}</b> calories per day.</li>
                     <li>Your current goal is to <b>{props.basics.goal}</b>.</li>
                 </ul>
+                </div>
                 
                 <Link to='/edit-basics'><button class="button is-warning">Update</button></Link>
             </section>
@@ -69,10 +75,13 @@ function DashboardUI(props) {
                     </tr>
                 </tfoot>
                 </table>
-
-                <p>{calorieMessage}</p>
-                <p>{proteinMessage}</p>
                 
+                <div class="content">
+                    <ul>
+                    {calorieMessage()}
+                    {proteinMessage()}
+                    </ul>
+                </div>
             </section>
         </>
     )
