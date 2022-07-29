@@ -6,7 +6,7 @@ function Header(props) {
         return(
             <>
             <div class="level-left">
-                <Link class="level-item" to='/'><b>Diet Planner</b></Link>
+                <Link class="level-item has-text-black" to='/'><b>Diet Planner</b></Link>
             </div>
             
             <div class="level-right">

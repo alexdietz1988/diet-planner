@@ -53,7 +53,7 @@ function DashboardUI(props) {
                     </tr>
                 ))}
                 <tr>
-                    <td><Link to='/add-meal'><button class="button is-info">Add a meal</button></Link></td>
+                    <td><Link to='/add-meal'><button class="button is-small is-info">Add a meal</button></Link></td>
                 </tr>
                 </tbody>
                 <tfoot>
