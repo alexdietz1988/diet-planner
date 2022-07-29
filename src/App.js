@@ -20,10 +20,10 @@ function App() {
 
   return (
     <>
+    <section class="section">
       <Header user={user} setUser={setUser}/>
-          
+      
       <section class="section">
-        <div class="container">
           <Routes>
             <Route exact path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />
@@ -33,10 +33,9 @@ function App() {
             <Route path='add-meal' element={<AddMeal backend={backend} user={user} />} />
             <Route path='edit-meal' element={<EditMeal backend={backend} user={user} meal={meal} setMeal={setMeal}/>} />
           </Routes>
-        </div>
       </section>
 
-
+    </section>
     </>
   )
 }

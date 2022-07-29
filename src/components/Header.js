@@ -5,13 +5,13 @@ function Header(props) {
     function notSignedIn() {
         return(
             <>
-            <div class="navbar-brand">
-                <Link class="navbar-item" to='/'><b>Diet Planner</b></Link>
+            <div class="level-left">
+                <Link class="level-item" to='/'><b>Diet Planner</b></Link>
             </div>
             
-            <div class="navbar-menu">
-                <Link class="navbar-item" to='/signup'>Signup</Link>
-                <Link class="navbar-item" to='/login'>Login</Link>
+            <div class="level-right">
+                <Link class="level-item" to='/signup'>Signup</Link>
+                <Link class="level-item" to='/login'>Login</Link>
             </div>
             </>
         )
@@ -20,25 +20,21 @@ function Header(props) {
     function signedIn() {
         return(
             <>
-            <div class="navbar-brand">
-                <Link class="navbar-item" to='/'><b>Diet Planner</b></Link>
+            <div class="level-left">
+                <div class="level-item"><Link class="has-text-black" to='/'><b>Diet Planner</b></Link></div>
+                <div class="level-item"><Link to='/dashboard'>Dashboard</Link></div>
             </div>
 
-            <div class="navbar-menu">
-                <div class="navbar-start">
-                <Link class="navbar-item" to='/dashboard'>Dashboard</Link>
-                </div>
-                <div class="navbar-end">
-                    <div class="navbar-item"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
-                    <div class="navbar-item">Logged in as {props.user}</div>
-                </div>
+            <div class="level-right">
+                <div class="level-item tag"><em>logged in as {props.user}</em></div>
+                <div class="level-item"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
             </div>
             </>
         )
     }
 
     return(
-        <nav class="navbar">
+        <nav class="level">
         {props.user === '' ? notSignedIn() : signedIn()}
         </nav>
     )
