@@ -16,6 +16,7 @@ function Landing() {
                         <th>Protein (g)</th>
                     </tr>
                 </thead>
+                <tbody>
                 <tr>
                     <td>Cut</td>
                     <td>TDEE x 0.75</td>
@@ -31,6 +32,7 @@ function Landing() {
                     <td>TDEE x 1</td>
                     <td>Weight (lbs) x 1</td>
                 </tr>
+                </tbody>
             </table>
 
         </section>

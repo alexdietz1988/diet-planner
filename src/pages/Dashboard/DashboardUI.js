@@ -58,26 +58,38 @@ function DashboardUI(props) {
                         </td>
                     </tr>
                 ))}
+                </tbody>
                 <tr>
                     <td><Link to='/add-meal'><button class="button is-small is-info">Add a meal</button></Link></td>
                 </tr>
-                </tbody>
+                
                 <tfoot>
-                    <tr>
-                        <th>Totals</th>
-                        <th>{props.dietTotals.calories}</th>
-                        <th>{props.dietTotals.protein} g</th>
-                    </tr>
-                    <tr>
-                        <th>Targets</th>
-                        <th>{props.targets.calories}</th>
-                        <th>{props.targets.protein} g</th>
+                    <tr class="content">
+                        <th>
+                            <p class="mb-1">Totals</p>
+                            <p class="has-text-weight-normal">Targets</p>
+                        </th>
+
+                        <th>
+                            {props.dietTotals.calories < props.targets.calories ?
+                                <><p class="has-text-success mb-1">{props.dietTotals.calories}</p></> 
+                                : <><p class="has-text-danger mb-1">{props.dietTotals.calories}</p></>
+                            }
+                            <p class="has-text-weight-normal">{props.targets.calories}</p>
+                        </th>
+
+                        <th>
+                            {props.dietTotals.protein < props.targets.protein ?
+                                <><p class="has-text-danger mb-1">{props.dietTotals.protein} g</p></> 
+                                : <><p class="has-text-success mb-1">{props.dietTotals.protein} g</p></>
+                            }
+                            <p class="has-text-weight-normal">{props.targets.protein} g</p>
+                        </th>
                     </tr>
                 </tfoot>
                 </table>
 
                 <div class="content">
-                
                     <ul>
                     {calorieMessage()}
                     {proteinMessage()}
@@ -85,7 +97,6 @@ function DashboardUI(props) {
                 </div>
 
             </section>
-
         </>
     )
 }
