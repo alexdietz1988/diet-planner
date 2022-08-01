@@ -49,6 +49,7 @@ function EditBasics(props) {
                 <div class="control">
                     <input class="input" type="text" name="TDEE" id="TDEE" value={formData.TDEE} onChange={handleChange}/>
                 </div>
+                <p class="help">Your TDEE is your total daily energy expenditure, or how many calories you burn in a day.</p><p class="help">You can estimate your TDEE using <a href="https://www.calculator.net/tdee-calculator.html">this tool</a> or by <a href="https://9to5mac.com/2021/12/09/apple-watch-how-to-see-calories-burned-active-and-passive/">using a fitness tracker like Apple Watch</a>.</p>
             </div>
 
             <div class="field">

@@ -75,14 +75,17 @@ function DashboardUI(props) {
                     </tr>
                 </tfoot>
                 </table>
-                
+
                 <div class="content">
+                
                     <ul>
                     {calorieMessage()}
                     {proteinMessage()}
                     </ul>
                 </div>
+
             </section>
+
         </>
     )
 }
