@@ -5,15 +5,15 @@ function DashboardUI(props) {
     function calorieMessage() {
         let calorieDifference = props.targets.calories - props.dietTotals.calories
 
-        if (calorieDifference > 0) return <li>You have room for <b>{calorieDifference}</b> more calories.</li>
-        return <li>You are <b>{-calorieDifference}</b> calories over your limit.</li>
+        if (calorieDifference > 0) return <p>You have room for <b>{calorieDifference}</b> more calories.</p>
+        return <p>You are <b>{-calorieDifference}</b> calories over your limit.</p>
     }
 
     function proteinMessage() {
         let proteinDifference = props.targets.protein - props.dietTotals.protein
 
-        if (proteinDifference > 0) return <li>You need <b>{proteinDifference}</b> more grams of protein.</li>
-        return <li>You are consuming a surplus of <b>{-proteinDifference}</b> grams of protein.</li>
+        if (proteinDifference > 0) return <p>You need <b>{proteinDifference}</b> more grams of protein.</p>
+        return <p>You are consuming a surplus of <b>{-proteinDifference}</b> grams of protein.</p>
     }
 
     return(
@@ -21,11 +21,11 @@ function DashboardUI(props) {
             <section class="section">
                 <h4 class="title is-4">Basics</h4>
                 <div class="content">
-                <ul>
-                    <li>You weigh <b>{props.basics.weight}</b> pounds.</li>
-                    <li>You burn <b>{props.basics.TDEE}</b> calories per day.</li>
-                    <li>Your current goal is to <b>{props.basics.goal}</b>.</li>
-                </ul>
+
+                    <p>You weigh <b>{props.basics.weight}</b> pounds.</p>
+                    <p>You burn <b>{props.basics.TDEE}</b> calories per day.</p>
+                    <p>Your current goal is to <b>{props.basics.goal}</b>.</p>
+
                 </div>
                 
                 <Link to='/edit-basics'><button class="button is-warning">Update</button></Link>
@@ -90,10 +90,11 @@ function DashboardUI(props) {
                 </table>
 
                 <div class="content">
-                    <ul>
+
+
                     {calorieMessage()}
                     {proteinMessage()}
-                    </ul>
+
                 </div>
 
             </section>
