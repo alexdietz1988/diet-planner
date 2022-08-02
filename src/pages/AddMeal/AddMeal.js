@@ -35,7 +35,7 @@ function AddMeal(props) {
         .catch((error) => console.log(error))
     }
 
-    return<AddMealUI handleChange={handleChange} handleSubmit={handleSubmit}/>
+    return <AddMealUI handleChange={handleChange} handleSubmit={handleSubmit}/>
 }
 
 export default AddMeal

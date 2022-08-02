@@ -28,7 +28,6 @@ function Signup(props) {
             password: formData.password
         })
         .then((response) => {
-            console.log(response.data)
             if (response.data === 'user already exists') {
                 setUserAlreadyExists(true)
             }

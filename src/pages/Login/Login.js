@@ -33,7 +33,7 @@ function Login(props) {
             }
             else if (response.data === 'successfully logged in') {
                 props.setUser(formData.username)
-                navigate('/dashboard')
+                navigate('/basics')
             }
         })
         .catch((error) => console.log(error))

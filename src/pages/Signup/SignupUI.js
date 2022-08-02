@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import Submit from "../../components/Submit"
 
 function SignupUI(props) {
     return(
@@ -20,14 +20,7 @@ function SignupUI(props) {
                 </div>
             </div>
 
-            <div className="field is-grouped">
-                <div className="control">
-                    <input className="button is-link" type="submit" value="Submit" />
-                </div>
-                <div className="control">
-                    <Link className="button is-light" to='/'>Cancel</Link>
-                </div>
-            </div>
+            <Submit cancel="/"/>
         </form>
         </>
     )

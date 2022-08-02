@@ -30,7 +30,7 @@ function EditMeal(props) {
         })
         .then((response) => {
             if (response.data === 'successfully updated meal') {
-                navigate('/dashboard')
+                navigate('/basics')
             }
         })
         .catch((error) => console.log(error))

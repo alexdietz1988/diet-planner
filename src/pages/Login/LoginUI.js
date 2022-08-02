@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import Submit from "../../components/Submit"
 
 function LoginUI(props) {
     return(
@@ -19,14 +19,7 @@ function LoginUI(props) {
                 </div>
             </div>
 
-            <div className="field is-grouped">
-                <div className="control">
-                    <input className="button is-link" type="submit" value="Submit" />
-                </div>
-                <div className="control">
-                    <Link className="button is-light" to='/'>Cancel</Link>
-                </div>
-            </div>
+            <Submit cancel="/"/>
         </form>
 
         {props.invalidEntry ? <p>Invalid username or password.</p> : null}

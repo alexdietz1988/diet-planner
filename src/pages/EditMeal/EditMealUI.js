@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import Submit from "../../components/Submit"
 
 function EditMealUI(props) {
     return(
@@ -28,14 +28,7 @@ function EditMealUI(props) {
                 </div>
             </div>
 
-            <div className="field is-grouped">
-                <div className="control">
-                    <input className="button is-link" type="submit" value="Submit" />
-                </div>
-                <div className="control">
-                    <Link className="button is-light" to='/your-diet'>Cancel</Link>
-                </div>
-            </div>
+            <Submit cancel="/your-diet"/>
         </form>
         </section>
         </>
