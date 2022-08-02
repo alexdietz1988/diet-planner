@@ -1,14 +1,14 @@
 function Landing() {
     return(
         <>
-        <section class="section content">
+        <section className="section content">
             <p>A simple tool for planning a diet to help you <a href="https://www.healthline.com/nutrition/bulking-vs-cutting">bulk, cut, or maintain</a>.</p>
             
         </section>
-        <section class="section">
-            <p class="content">Targets are calculated using the following formulas:</p>
+        <section className="section">
+            <p className="content">Targets are calculated using the following formulas:</p>
 
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Diet</th>
@@ -36,9 +36,9 @@ function Landing() {
             </table>
 
         </section>
-        <section class="section content">
+        <section className="section content">
             <p>Created by <a href="https://alexdietz.herokuapp.com/">Alex Dietz</a> using React.</p>
-            <p class="is-size-7">Icon: <a href="https://www.flaticon.com/free-icons/avocado" title="avocado icons">Freepik on Flaticon</a></p>
+            <p className="is-size-7">Icon: <a href="https://www.flaticon.com/free-icons/avocado" title="avocado icons">Freepik on Flaticon</a></p>
         </section>
         </>
     )

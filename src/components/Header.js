@@ -5,13 +5,13 @@ function Header(props) {
     function notSignedIn() {
         return(
             <>
-            <div class="level-left">
-                <Link class="level-item has-text-black" to='/'><b>Diet Planner</b></Link>
+            <div className="level-left">
+                <Link className="level-item has-text-black" to='/'><b>Diet Planner</b></Link>
             </div>
             
-            <div class="level-right">
-                <Link class="level-item button is-link" to='/signup'>Signup</Link>
-                <Link class="level-item button" to='/login'>Login</Link>
+            <div className="level-right">
+                <Link className="level-item button is-link" to='/signup'>Signup</Link>
+                <Link className="level-item button" to='/login'>Login</Link>
             </div>
             </>
         )
@@ -20,21 +20,21 @@ function Header(props) {
     function signedIn() {
         return(
             <>
-            <div class="level-left">
-                <div class="level-item"><Link class="has-text-black" to='/'><b>Diet Planner</b></Link></div>
-                <div class="level-item"><Link to='/dashboard'>Dashboard</Link></div>
+            <div className="level-left">
+                <div className="level-item"><Link className="has-text-black" to='/'><b>Diet Planner</b></Link></div>
+                <div className="level-item"><Link to='/dashboard'>Dashboard</Link></div>
             </div>
 
-            <div class="level-right">
-                <div class="level-item"><em class="tag">logged in as {props.user}</em></div>
-                <div class="level-item button"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
+            <div className="level-right">
+                <div className="level-item"><em className="tag">logged in as {props.user}</em></div>
+                <div className="level-item button"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
             </div>
             </>
         )
     }
 
     return(
-        <nav class="level">
+        <nav className="level">
         {props.user === '' ? notSignedIn() : signedIn()}
         </nav>
     )

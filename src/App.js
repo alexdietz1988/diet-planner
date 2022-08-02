@@ -20,11 +20,11 @@ function App() {
 
   return (
     <>
-    <section class="section">
+    <section className="section">
       <Header user={user} setUser={setUser}/>
       
 
-      <section class="section">
+      <section className="section">
           <Routes>
             <Route exact path='/' element={<Landing />} />
             <Route path='/signup' element={<Signup backend={backend} setUser={setUser} user={user}/>} />

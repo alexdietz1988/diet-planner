@@ -36,37 +36,37 @@ function EditMeal(props) {
 
     return(
         <>
-        <h4 class="title is-4">Edit meal</h4>
+        <h4 className="title is-4">Edit meal</h4>
 
-        <section class="section">
+        <section className="section">
         <form onSubmit={handleSubmit}>
-            <div class="field">
-                <label class="label" htmlFor="name">Name</label>
-                <div class="control">
-                    <input class="input" type="text" name="name" id="name" value={formData.name} onChange={handleChange}/>
+            <div className="field">
+                <label className="label" htmlFor="name">Name</label>
+                <div className="control">
+                    <input className="input" type="text" name="name" id="name" value={formData.name} onChange={handleChange}/>
                 </div>
             </div>
 
-            <div class="field">
-                <label class="label" htmlFor="calories">Calories</label>
-                <div class="control">
-                    <input class="input" type="number" name="calories" id="calories" value={formData.calories} onChange={handleChange}/>
+            <div className="field">
+                <label className="label" htmlFor="calories">Calories</label>
+                <div className="control">
+                    <input className="input" type="number" name="calories" id="calories" value={formData.calories} onChange={handleChange}/>
                 </div>
             </div>
 
-            <div class="field">
-                <label class="label" htmlFor="protein">Protein</label>
-                <div class="control">
-                    <input class="input" type="number" name="protein" id="protein" value={formData.protein} onChange={handleChange}/>
+            <div className="field">
+                <label className="label" htmlFor="protein">Protein</label>
+                <div className="control">
+                    <input className="input" type="number" name="protein" id="protein" value={formData.protein} onChange={handleChange}/>
                 </div>
             </div>
 
-            <div class="field is-grouped">
-                <div class="control">
-                    <input class="button is-link" type="submit" value="Submit" />
+            <div className="field is-grouped">
+                <div className="control">
+                    <input className="button is-link" type="submit" value="Submit" />
                 </div>
-                <div class="control">
-                    <Link class="button is-light" to='/dashboard'>Cancel</Link>
+                <div className="control">
+                    <Link className="button is-light" to='/dashboard'>Cancel</Link>
                 </div>
             </div>
         </form>

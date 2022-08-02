@@ -39,28 +39,28 @@ function Login(props) {
 
     return(
         <>
-        <h4 class="title is-4">Login</h4>
+        <h4 className="title is-4">Login</h4>
         <form onSubmit={handleSubmit}>
-            <div class="field">
-                <label class="label" htmlFor="username">Username</label>
-                <div class="control">
-                    <input class="input" type="text" name="username" id="username" onChange={handleChange}/>
+            <div className="field">
+                <label className="label" htmlFor="username">Username</label>
+                <div className="control">
+                    <input className="input" type="text" name="username" id="username" onChange={handleChange}/>
                 </div>
             </div>
 
-            <div class="field">
-                <label class="label" htmlFor="password">Password</label>
-                <div class="control">
-                    <input class="input" type="password" name="password" id="password" onChange={handleChange}/>
+            <div className="field">
+                <label className="label" htmlFor="password">Password</label>
+                <div className="control">
+                    <input className="input" type="password" name="password" id="password" onChange={handleChange}/>
                 </div>
             </div>
 
-            <div class="field is-grouped">
-                <div class="control">
-                    <input class="button is-link" type="submit" value="Submit" />
+            <div className="field is-grouped">
+                <div className="control">
+                    <input className="button is-link" type="submit" value="Submit" />
                 </div>
-                <div class="control">
-                    <Link class="button is-light" to='/'>Cancel</Link>
+                <div className="control">
+                    <Link className="button is-light" to='/'>Cancel</Link>
                 </div>
             </div>
         </form>
