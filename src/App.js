@@ -1,12 +1,12 @@
 import Header from './components/Header'
 import Landing from './pages/Landing'
-import Signup from './pages/Signup'
-import Login from './pages/Login'
+import Signup from './pages/Signup/Signup'
+import Login from './pages/Login/Login'
 
 import Dashboard from './pages/Dashboard/Dashboard'
-import EditBasics from './pages/Dashboard/EditBasics'
-import AddMeal from './pages/Dashboard/AddMeal'
-import EditMeal from './pages/Dashboard/EditMeal'
+import EditBasics from './pages/EditBasics/EditBasics'
+import AddMeal from './pages/AddMeal/AddMeal'
+import EditMeal from './pages/EditMeal/EditMeal'
 
 import { Route, Routes} from "react-router-dom"
 import { useState } from 'react'
