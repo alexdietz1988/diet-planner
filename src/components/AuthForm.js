@@ -1,9 +1,8 @@
-import Submit from "../../components/Submit"
+import Submit from "./Submit"
 
-function SignupUI(props) {
+function AuthForm(props) {
     return(
         <>
-        <h4 className="title is-4">Signup</h4>
         <form onSubmit={props.handleSubmit}>
             <div className="field">
                 <label className="label" htmlFor="username">Username</label>
@@ -22,8 +21,10 @@ function SignupUI(props) {
 
             <Submit cancel="/"/>
         </form>
+
+        {props.invalidEntry ? <p>Invalid username or password.</p> : null}
         </>
     )
 }
 
-export default SignupUI
+export default AuthForm

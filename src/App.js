@@ -1,7 +1,7 @@
 import Header from './components/Header'
 import Landing from './pages/Landing'
-import Signup from './pages/Signup/Signup'
-import Login from './pages/Login/Login'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
 
 import Basics from './pages/Basics/Basics'
 import EditBasics from './pages/EditBasics/EditBasics'

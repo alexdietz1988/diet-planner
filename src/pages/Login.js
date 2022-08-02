@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import LoginUI from "./LoginUI"
+import AuthForm from "../components/AuthForm"
 
 function Login(props) {
     let navigate = useNavigate()
@@ -39,7 +39,12 @@ function Login(props) {
         .catch((error) => console.log(error))
     }
 
-    return <LoginUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} invalidEntry={invalidEntry} />
+    return (
+        <>
+        <h4 className="title is-4">Login</h4>
+        <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} invalidEntry={invalidEntry} />
+        </>
+    )
 }
 
 export default Login

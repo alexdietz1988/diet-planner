@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import SignupUI from "./SignupUI"
+import AuthForm from "../components/AuthForm"
 
 function Signup(props) {
     let navigate = useNavigate()
@@ -39,7 +39,12 @@ function Signup(props) {
         .catch((error) => console.log(error))
     }
 
-    return <SignupUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} userAlreadyExists={userAlreadyExists} />
+    return (
+        <>
+        <h4 className="title is-4">Signup</h4>
+        <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} userAlreadyExists={userAlreadyExists} />
+        </>
+    )
 }
 
 export default Signup
