@@ -34,7 +34,7 @@ function Signup(props) {
             }
             else if (response.data === 'user created') {
                 props.setUser(formData.username)
-                navigate('/dashboard')
+                navigate('/basics')
             }
         })
         .catch((error) => console.log(error))

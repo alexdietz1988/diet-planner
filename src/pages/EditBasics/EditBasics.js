@@ -21,7 +21,7 @@ function EditBasics(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.put(props.backend + 'userinfo/?username=' + props.user, {
+        axios.put(props.backend + 'basics/?username=' + props.user, {
             username: props.user,
             weight: formData.weight,
             goal: formData.goal,

@@ -5,7 +5,7 @@ import DashboardUI from "./BasicsUI"
 function Basics(props) {
 
     function getUserInfo() {
-        axios.get(props.backend + 'userinfo/?username=' + props.user)
+        axios.get(props.backend + 'basics/?username=' + props.user)
             .then((response) => {
                 props.setBasics({weight: parseInt(response.data.weight), goal: response.data.goal, TDEE: parseInt(response.data.TDEE)})
                 switch(props.goal) {
