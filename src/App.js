@@ -6,8 +6,8 @@ import Login from './pages/Login/Login'
 import Basics from './pages/Basics/Basics'
 import EditBasics from './pages/EditBasics/EditBasics'
 import YourDiet from './pages/YourDiet/YourDiet'
-import AddMeal from './pages/AddMeal/AddMeal'
-import EditMeal from './pages/EditMeal/EditMeal'
+import AddMeal from './pages/AddMeal'
+import EditMeal from './pages/EditMeal'
 
 import { Route, Routes} from "react-router-dom"
 import { useState } from 'react'

@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import AddMealUI from "./AddMealUI"
+import MealForm from "../components/MealForm"
 
 function AddMeal(props) {
     let navigate = useNavigate()
@@ -35,7 +35,12 @@ function AddMeal(props) {
         .catch((error) => console.log(error))
     }
 
-    return <AddMealUI handleChange={handleChange} handleSubmit={handleSubmit}/>
+    return (
+        <>
+        <h4 className="title is-4">Add a meal</h4>
+        <MealForm handleChange={handleChange} handleSubmit={handleSubmit}/>
+        </>
+    )
 }
 
 export default AddMeal

@@ -1,10 +1,8 @@
-import Submit from "../../components/Submit"
+import Submit from "./Submit"
 
-function EditMealUI(props) {
+function MealForm(props) {
     return(
         <>
-        <h4 className="title is-4">Edit meal</h4>
-
         <section className="section">
         <form onSubmit={props.handleSubmit}>
             <div className="field">
@@ -35,4 +33,4 @@ function EditMealUI(props) {
     )
 }
 
-export default EditMealUI
+export default MealForm

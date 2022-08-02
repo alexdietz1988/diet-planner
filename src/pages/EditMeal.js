@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import EditMealUI from "./EditMealUI"
+import MealForm from "../components/MealForm"
 
 function EditMeal(props) {
     let navigate = useNavigate()
@@ -36,7 +36,12 @@ function EditMeal(props) {
         .catch((error) => console.log(error))
     }
 
-    return <EditMealUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} />
+    return (
+        <>
+        <h4 className="title is-4">Edit meal</h4>
+        <MealForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} />
+        </>
+    )
 }
 
 export default EditMeal
