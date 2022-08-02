@@ -33,7 +33,7 @@ function EditMealUI(props) {
                     <input className="button is-link" type="submit" value="Submit" />
                 </div>
                 <div className="control">
-                    <Link className="button is-light" to='/dashboard'>Cancel</Link>
+                    <Link className="button is-light" to='/your-diet'>Cancel</Link>
                 </div>
             </div>
         </form>

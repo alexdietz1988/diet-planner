@@ -29,7 +29,7 @@ function EditBasics(props) {
         })
         .then((response) => {
             if (response.data === 'successfully updated user info') {
-                navigate('/dashboard')
+                navigate('/basics')
             }
         })
         .catch((error) => console.log(error))
