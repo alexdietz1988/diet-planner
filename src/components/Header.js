@@ -22,7 +22,8 @@ function Header(props) {
             <>
             <div className="level-left">
                 <div className="level-item"><Link className="has-text-black" to='/'><b>Diet Planner</b></Link></div>
-                <div className="level-item"><Link to='/dashboard'>Dashboard</Link></div>
+                <div className="level-item"><Link to='/basics'>Basics</Link></div>
+                <div className="level-item"><Link to='/your-diet'>Your Diet</Link></div>
             </div>
 
             <div className="level-right">

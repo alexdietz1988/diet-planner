@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
-function DashboardUI(props) {
-
+function YourDietUI(props) {
     function calorieMessage() {
         let calorieDifference = props.targets.calories - props.dietTotals.calories
 
@@ -16,22 +15,8 @@ function DashboardUI(props) {
         return <p>You are consuming a surplus of <b>{-proteinDifference}</b> grams of protein.</p>
     }
 
-    return(
-        <>
-            <section className="section">
-                <h4 className="title is-4">Basics</h4>
-                <div className="content">
-
-                    <p>You weigh <b>{props.basics.weight}</b> pounds.</p>
-                    <p>You burn <b>{props.basics.TDEE}</b> calories per day.</p>
-                    <p>Your current goal is to <b>{props.basics.goal}</b>.</p>
-
-                </div>
-                
-                <Link to='/edit-basics'><button className="button is-warning">Update</button></Link>
-            </section>
-
-            <section className="section">
+    return (
+        <section className="section">
                 <h4 className="title is-4">Your diet</h4>
 
                 <table className="table">
@@ -95,8 +80,7 @@ function DashboardUI(props) {
                 </div>
 
             </section>
-        </>
     )
 }
 
-export default DashboardUI
+export default YourDietUI
