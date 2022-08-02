@@ -8,21 +8,21 @@ function AddMealUI(props) {
             <div className="field">
                 <label className="label" htmlFor="name">Name</label>
                 <div className="control">
-                    <input className="input" type="text" name="name" id="name" onChange={props.handleChange}/>
+                    <input className="input" type="text" name="name" id="name" onChange={props.handleChange} required/>
                 </div>
             </div>
 
             <div className="field">
                 <label className="label" htmlFor="calories">Calories</label>
                 <div className="control">
-                    <input className="input" type="number" name="calories" id="calories" onChange={props.handleChange}/>
+                    <input className="input" type="number" name="calories" id="calories" onChange={props.handleChange} required/>
                 </div>
             </div>
 
             <div className="field">
                 <label className="label" htmlFor="protein">Protein</label>
                 <div className="control">
-                    <input className="input" type="number" name="protein" id="protein" onChange={props.handleChange}/>
+                    <input className="input" type="number" name="protein" id="protein" onChange={props.handleChange} required/>
                 </div>
             </div>
 

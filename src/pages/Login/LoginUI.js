@@ -8,14 +8,14 @@ function LoginUI(props) {
             <div className="field">
                 <label className="label" htmlFor="username">Username</label>
                 <div className="control">
-                    <input className="input" type="text" name="username" id="username" onChange={props.handleChange}/>
+                    <input className="input" type="text" name="username" id="username" onChange={props.handleChange} required/>
                 </div>
             </div>
 
             <div className="field">
                 <label className="label" htmlFor="password">Password</label>
                 <div className="control">
-                    <input className="input" type="password" name="password" id="password" onChange={props.handleChange}/>
+                    <input className="input" type="password" name="password" id="password" onChange={props.handleChange} required/>
                 </div>
             </div>
 

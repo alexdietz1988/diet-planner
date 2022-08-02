@@ -58,10 +58,10 @@ function DashboardUI(props) {
                         </td>
                     </tr>
                 ))}
-                </tbody>
                 <tr>
                     <td><Link to='/add-meal'><button className="button is-small is-info">Add a meal</button></Link></td>
                 </tr>
+                </tbody>
                 
                 <tfoot>
                     <tr className="content">
@@ -90,11 +90,8 @@ function DashboardUI(props) {
                 </table>
 
                 <div className="content">
-
-
                     {calorieMessage()}
                     {proteinMessage()}
-
                 </div>
 
             </section>
