@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect } from "react"
-import DashboardUI from "./BasicsUI"
+import BasicsUI from "./BasicsUI"
 
 function Basics(props) {
 
@@ -24,7 +24,7 @@ function Basics(props) {
 
     useEffect(() => {getUserInfo()}, [])
 
-    return <DashboardUI user={props.user} basics={props.basics}/>
+    return <BasicsUI user={props.user} basics={props.basics}/>
 }
 
 export default Basics
