@@ -4,7 +4,7 @@ import BasicsUI from "./BasicsUI"
 
 function Basics(props) {
 
-    function getUserInfo() {
+    function getBasics() {
         axios.get(props.backend + 'basics/?username=' + props.user)
             .then((response) => {
                 props.setBasics({weight: parseInt(response.data.weight), goal: response.data.goal, TDEE: parseInt(response.data.TDEE)})
@@ -22,7 +22,7 @@ function Basics(props) {
             .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getUserInfo()}, [])
+    useEffect(() => {getBasics()}, [])
 
     return <BasicsUI user={props.user} basics={props.basics}/>
 }

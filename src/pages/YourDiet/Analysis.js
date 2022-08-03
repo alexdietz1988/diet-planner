@@ -1,6 +1,6 @@
 function Analysis(props) {
-    let calorieDifference = props.targets.calories - props.dietTotals.calories
-    let proteinDifference = props.targets.protein - props.dietTotals.protein
+    let calorieDifference = props.targets.calories - props.diet.calories
+    let proteinDifference = props.targets.protein - props.diet.protein
     
     return (
         <div className="content">

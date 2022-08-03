@@ -10,10 +10,10 @@ function YourDietUI(props) {
 
             <table className="table">
                 <TableTop meals={props.meals} setMeal={props.setMeal} deleteMeal={props.deleteMeal}/>
-                <TableFooter dietTotals={props.dietTotals} targets={props.targets}/>
+                <TableFooter diet={props.diet} targets={props.targets}/>
             </table>
 
-            <Analysis dietTotals={props.dietTotals} targets={props.targets}/>
+            <Analysis diet={props.diet} targets={props.targets}/>
         </section>
     )
 }

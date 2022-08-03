@@ -5,7 +5,7 @@ import axios from "axios"
 
 function YourDiet(props) {
     const [meals, setMeals] = useState([])
-    const [dietTotals, setDietTotals] = useState({calories: 0, protein: 0})
+    const [diet, setDiet] = useState({calories: 0, protein: 0})
 
     function getMeals() {
         axios.get(props.backend + 'meal/?username=' + props.user)
@@ -15,7 +15,7 @@ function YourDiet(props) {
                     calories += parseInt(meal.calories)
                     protein += parseInt(meal.protein)
                 }
-                setDietTotals({calories: calories, protein: protein})
+                setDiet({calories: calories, protein: protein})
                 setMeals(response.data)
             })
             .catch((error) => console.log(error))
@@ -33,7 +33,7 @@ function YourDiet(props) {
 
     useEffect(() => {getMeals()}, [])
 
-    return <YourDietUI meals={meals} deleteMeal={deleteMeal} setMeal={props.setMeal} dietTotals={dietTotals} targets={props.targets}/>
+    return <YourDietUI meals={meals} deleteMeal={deleteMeal} setMeal={props.setMeal} diet={diet} targets={props.targets}/>
 }
 
 export default YourDiet
