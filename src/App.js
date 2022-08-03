@@ -31,7 +31,7 @@ function App() {
             <Route path='/edit-basics' element={<EditBasics backend={backend} user={user} basics={basics} setBasics={setBasics}/>} />
             <Route path='/your-diet' element={<YourDiet backend={backend} user={user} targets={targets} setMeal={setMeal} />} />
             <Route path='add-meal' element={<AddMeal backend={backend} user={user}/>} />
-            <Route path='edit-meal' element={<EditMeal backend={backend} user={user}/>} />
+            <Route path='edit-meal' element={<EditMeal backend={backend} user={user} meal={meal}/>} />
 
           </Routes>
       </section>

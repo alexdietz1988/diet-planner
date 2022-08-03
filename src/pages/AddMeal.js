@@ -30,7 +30,7 @@ function AddMeal(props) {
         })
         .then((response) => {
             if (response.data === 'successfully added meal') {
-                navigate('/basics')
+                navigate('/your-diet')
             }
         })
         .catch((error) => console.log(error))
