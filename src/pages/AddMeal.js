@@ -6,6 +6,7 @@ import MealForm from "../components/MealForm"
 
 function AddMeal(props) {
     let navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         name: '',
         calories: '',

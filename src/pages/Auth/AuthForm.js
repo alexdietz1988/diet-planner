@@ -1,4 +1,4 @@
-import Submit from "./Submit"
+import Submit from "../../components/Submit"
 
 function AuthForm(props) {
     return(
@@ -9,7 +9,7 @@ function AuthForm(props) {
                 <div className="control">
                     <input className="input" type="text" name="username" id="username" onChange={props.handleChange} required/>
                 </div>
-                {props.userAlreadyExists ? <p className="help is-danger">There's already an account with that username. If it's you, please login; otherwise, enter a different username.</p> : null}
+                {props.warning === 'user already exists' ? <p className="help is-danger">There's already an account with that username. If it's you, please login; otherwise, enter a different username.</p> : null}
             </div>
 
             <div className="field">
@@ -22,7 +22,7 @@ function AuthForm(props) {
             <Submit cancel="/"/>
         </form>
 
-        {props.invalidEntry ? <p>Invalid username or password.</p> : null}
+        {props.warning === 'invalid username or password' ? <p>Invalid username or password.</p> : null}
         </>
     )
 }

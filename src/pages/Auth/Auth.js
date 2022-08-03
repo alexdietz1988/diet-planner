@@ -2,9 +2,9 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import AuthForm from "../components/AuthForm"
+import AuthForm from "./AuthForm"
 
-function Login(props) {
+function Auth(props) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ function Login(props) {
         password: ''
     })
 
-    const [invalidEntry, setInvalidEntry] = useState(false)
+    const [warning, setWarning] = useState('')
 
     function handleChange(e) {
         setFormData((prevState) => ({
@@ -23,15 +23,15 @@ function Login(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'auth/login', {
+        axios.post(props.backend + 'auth/' + props.page, {
             username: formData.username,
             password: formData.password
         })
         .then((response) => {
-            if (response.data === 'invalid username or password') {
-                setInvalidEntry(true)
+            if (response.data === 'invalid username or password' || response.data === 'user already exists') {
+                setWarning(response.data)
             }
-            else if (response.data === 'successfully logged in') {
+            else if (response.data === 'user created' || response.data === 'successfully logged in') {
                 props.setUser(formData.username)
                 navigate('/basics')
             }
@@ -41,10 +41,10 @@ function Login(props) {
 
     return (
         <>
-        <h4 className="title is-4">Login</h4>
-        <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} invalidEntry={invalidEntry} />
+        <h4 className="title is-4">{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
+        <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} warning={warning} />
         </>
     )
 }
 
-export default Login
+export default Auth
