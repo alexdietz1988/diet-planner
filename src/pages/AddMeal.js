@@ -1,10 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { connect } from 'react-redux'
 
 import MealForm from "../components/MealForm"
 
-function AddMeal(props) {
+function AddMeal({ backend, user }) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -22,8 +23,8 @@ function AddMeal(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'meal/?username=' + props.user, {
-            username: props.user,
+        axios.post(backend + `meal/?username=${user}`, {
+            username: user,
             name: formData.name,
             calories: formData.calories,
             protein: formData.protein
@@ -44,4 +45,10 @@ function AddMeal(props) {
     )
 }
 
-export default AddMeal
+function mapStateToProps(state) {
+    return({
+        user: state.user
+    })
+}
+
+export default connect(mapStateToProps)(AddMeal)

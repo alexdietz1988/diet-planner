@@ -2,18 +2,18 @@ import TableFooter from "./TableFooter"
 import Analysis from "./Analysis"
 import TableTop from "./TableTop"
 
-function YourDietUI(props) {
+function YourDietUI({ meals, setMeal, deleteMeal, diet, targets}) {
 
     return (
         <section className="section">
             <h4 className="title is-4">Your diet</h4>
 
             <table className="table">
-                <TableTop meals={props.meals} setMeal={props.setMeal} deleteMeal={props.deleteMeal}/>
-                <TableFooter diet={props.diet} targets={props.targets}/>
+                <TableTop meals={meals} setMeal={setMeal} deleteMeal={deleteMeal}/>
+                <TableFooter diet={diet} targets={targets}/>
             </table>
 
-            <Analysis diet={props.diet} targets={props.targets}/>
+            <Analysis diet={diet} targets={targets}/>
         </section>
     )
 }

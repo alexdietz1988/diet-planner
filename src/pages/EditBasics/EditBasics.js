@@ -1,15 +1,16 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { connect } from 'react-redux'
 
 import EditBasicsUI from "./EditBasicsUI"
 
-function EditBasics(props) {
+function EditBasics({ basics, backend, user }) {
     let navigate = useNavigate()
     const [formData, setFormData] = useState({
-        weight: props.basics.weight,
-        goal: props.basics.goal,
-        TDEE: props.basics.TDEE
+        weight: basics.weight,
+        goal: basics.goal,
+        TDEE: basics.TDEE
     })
 
     function handleChange(e) {
@@ -21,8 +22,8 @@ function EditBasics(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.put(props.backend + 'basics/?username=' + props.user, {
-            username: props.user,
+        axios.put(backend + `basics/?username=${user}`, {
+            username: user,
             weight: formData.weight,
             goal: formData.goal,
             TDEE: formData.TDEE
@@ -38,4 +39,10 @@ function EditBasics(props) {
     return <EditBasicsUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData}/>
 }
 
-export default EditBasics
+function mapStateToProps(state) {
+    return({
+        user: state.user
+    })
+}
+
+export default connect(mapStateToProps)(EditBasics)

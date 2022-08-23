@@ -1,6 +1,9 @@
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 
-function Header(props) {
+import { logout } from "../actions"
+
+function Header({ user }) {
 
     function notSignedIn() {
         return(
@@ -27,8 +30,8 @@ function Header(props) {
             </div>
 
             <div className="level-right">
-                <div className="level-item"><em className="tag">logged in as {props.user}</em></div>
-                <div className="level-item button"><Link to='/' onClick={() => props.setUser('')}>Logout</Link></div>
+                <div className="level-item"><em className="tag">logged in as {user}</em></div>
+                <div className="level-item button"><Link to='/' onClick={() => logout()}>Logout</Link></div>
             </div>
             </>
         )
@@ -36,9 +39,13 @@ function Header(props) {
 
     return(
         <nav className="level">
-        {props.user === '' ? notSignedIn() : signedIn()}
+        {user === '' ? notSignedIn() : signedIn()}
         </nav>
     )
 }
 
-export default Header
+function mapStateToProps(state) {
+    return { user: state.user }
+}
+
+export default connect(mapStateToProps)(Header)

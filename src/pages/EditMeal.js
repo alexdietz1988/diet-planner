@@ -1,16 +1,17 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { connect } from 'react-redux'
 
 import MealForm from "../components/MealForm"
 
-function EditMeal(props) {
+function EditMeal({meal, backend, user}) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        name: props.meal.name,
-        calories: props.meal.calories,
-        protein: props.meal.protein
+        name: meal.name,
+        calories: meal.calories,
+        protein: meal.protein
     })
 
     function handleChange(e) {
@@ -22,8 +23,8 @@ function EditMeal(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.put(props.backend + 'meal/?id=' + props.meal.id, {
-            username: props.user,
+        axios.put(backend + `meal/?id=${meal.id}`, {
+            username: user,
             name: formData.name,
             calories: formData.calories,
             protein: formData.protein
@@ -44,4 +45,10 @@ function EditMeal(props) {
     )
 }
 
-export default EditMeal
+function mapStateToProps(state) {
+    return({
+        user: state.user
+    })
+}
+
+export default connect(mapStateToProps)(EditMeal)

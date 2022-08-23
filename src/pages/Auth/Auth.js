@@ -1,18 +1,17 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { connect } from "react-redux"
 
 import AuthForm from "./AuthForm"
+import { login } from "../../actions"
 
-function Auth(props) {
+function Auth({ page, warning }) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     })
-
-    const [warning, setWarning] = useState('')
 
     function handleChange(e) {
         setFormData((prevState) => ({
@@ -23,28 +22,23 @@ function Auth(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + 'auth/' + props.page, {
-            username: formData.username,
-            password: formData.password
-        })
-        .then((response) => {
-            if (response.data === 'invalid username or password' || response.data === 'user already exists') {
-                setWarning(response.data)
-            }
-            else if (response.data === 'user created' || response.data === 'successfully logged in') {
-                props.setUser(formData.username)
-                navigate('/basics')
-            }
-        })
-        .catch((error) => console.log(error))
+        login(page, formData)
+        navigate('/basics')
     }
 
     return (
         <>
-        <h4 className="title is-4">{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
+        <h4 className="title is-4">{page[0].toUpperCase() + page.slice(1)}</h4>
         <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} warning={warning} />
         </>
     )
 }
 
-export default Auth
+function mapStateToProps(state) {
+    return({
+        user: state.user,
+        warning: state.warning
+    })
+}
+
+export default connect(mapStateToProps)(Auth)

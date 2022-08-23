@@ -1,14 +1,15 @@
-import YourDietUI from "./YourDietUI"
-
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { connect } from 'react-redux'
 
-function YourDiet(props) {
+import YourDietUI from "./YourDietUI"
+
+function YourDiet({ user, backend, setMeal, targets }) {
     const [meals, setMeals] = useState([])
     const [diet, setDiet] = useState({calories: 0, protein: 0})
 
     function getMeals() {
-        axios.get(props.backend + 'meal/?username=' + props.user)
+        axios.get(backend + `meal/?username=${user}`)
             .then((response) => {
                 let [calories, protein] = [0,0]
                 for (let meal of response.data) {
@@ -22,7 +23,7 @@ function YourDiet(props) {
     }
 
     function deleteMeal(mealId) {
-        axios.delete(props.backend + 'meal/?id=' + mealId)
+        axios.delete(backend + `meal/?id=${mealId}`)
             .then((response) => {
                 if (response.data === 'successfully deleted meal') {
                     getMeals()
@@ -33,7 +34,13 @@ function YourDiet(props) {
 
     useEffect(() => {getMeals()}, [])
 
-    return <YourDietUI meals={meals} deleteMeal={deleteMeal} setMeal={props.setMeal} diet={diet} targets={props.targets}/>
+    return <YourDietUI meals={meals} deleteMeal={deleteMeal} setMeal={setMeal} diet={diet} targets={targets}/>
 }
 
-export default YourDiet
+function mapStateToProps(state) {
+    return({
+        user: state.user
+    })
+}
+
+export default connect(mapStateToProps)(YourDiet)

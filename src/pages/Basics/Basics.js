@@ -1,22 +1,24 @@
 import axios from "axios"
 import { useEffect } from "react"
+import { connect } from "react-redux"
+
 import BasicsUI from "./BasicsUI"
 
-function Basics(props) {
+function Basics({ backend, basics, setBasics, setTargets, user, goal }) {
 
     function getBasics() {
-        axios.get(props.backend + 'basics/?username=' + props.user)
+        axios.get(backend + `basics/?username=${user}`)
             .then((response) => {
-                props.setBasics({weight: parseInt(response.data.weight), goal: response.data.goal, TDEE: parseInt(response.data.TDEE)})
-                switch(props.goal) {
+                setBasics({weight: parseInt(response.data.weight), goal: response.data.goal, TDEE: parseInt(response.data.TDEE)})
+                switch(goal) {
                     case 'cut':
-                        props.setTargets({calories: props.basics.TDEE * 0.75, protein: props.basics.weight * 1.1})
+                        setTargets({calories: basics.TDEE * 0.75, protein: basics.weight * 1.1})
                         break
                     case 'bulk':
-                        props.setTargets({calories: props.basics.TDEE * 1.1, protein: props.basics.weight})
+                        setTargets({calories: basics.TDEE * 1.1, protein: basics.weight})
                         break
                     default:
-                        props.setTargets({calories: props.basics.TDEE, protein: props.basics.weight})
+                        setTargets({calories: basics.TDEE, protein: basics.weight})
                 }
             })
             .catch((error) => console.log(error))
@@ -24,7 +26,13 @@ function Basics(props) {
 
     useEffect(() => {getBasics()}, [])
 
-    return <BasicsUI user={props.user} basics={props.basics}/>
+    return <BasicsUI user={user} basics={basics}/>
 }
 
-export default Basics
+function mapStateToProps(state) {
+    return({
+        user: state.user
+    })
+}
+
+export default connect(mapStateToProps)(Basics)
