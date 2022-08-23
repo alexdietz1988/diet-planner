@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useEffect } from "react"
-import { connect } from "react-redux"
 
 import BasicsUI from "./BasicsUI"
 
@@ -24,15 +23,9 @@ function Basics({ backend, basics, setBasics, setTargets, user, goal }) {
             .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getUserInfo()}, [])
+    useEffect(() => {getBasics()}, [])
 
     return <BasicsUI user={user} basics={basics}/>
 }
 
-function mapStateToProps(state) {
-    return({
-        user: state.user
-    })
-}
-
-export default connect(mapStateToProps)(Basics)
+export default Basics

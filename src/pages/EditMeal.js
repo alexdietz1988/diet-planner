@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { connect } from 'react-redux'
 
 import MealForm from "../components/MealForm"
 
@@ -45,10 +44,4 @@ function EditMeal({meal, backend, user}) {
     )
 }
 
-function mapStateToProps(state) {
-    return({
-        user: state.user
-    })
-}
-
-export default connect(mapStateToProps)(EditMeal)
+export default EditMeal

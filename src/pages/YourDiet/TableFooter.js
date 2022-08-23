@@ -4,23 +4,23 @@ function TableFooter(props) {
 
     return(
         <tfoot>
-        <tr className="content">
-            <th>
-                <p className="mb-1">Totals</p>
-                <p className="has-text-weight-normal">Targets</p>
-            </th>
+            <tr className="content">
+                <th>
+                    <p className="mb-1">Totals</p>
+                    <p className="has-text-weight-normal">Targets</p>
+                </th>
 
-            <th>
-                <p className={'has-text-' + calorieColor + ' mb-1'}>{props.dietTotals.calories}</p>
-                <p className="has-text-weight-normal">{props.targets.calories}</p>
-            </th>
+                <th>
+                    <p className={'has-text-' + calorieColor + ' mb-1'}>{props.dietTotals.calories}</p>
+                    <p className="has-text-weight-normal">{props.targets.calories}</p>
+                </th>
 
-            <th>
-                <p className={'has-text-' + proteinColor + ' mb-1'}>{props.dietTotals.protein} g</p>
-                <p className="has-text-weight-normal">{props.targets.protein} g</p>
-            </th>
-        </tr>
-    </tfoot>
+                <th>
+                    <p className={'has-text-' + proteinColor + ' mb-1'}>{props.dietTotals.protein} g</p>
+                    <p className="has-text-weight-normal">{props.targets.protein} g</p>
+                </th>
+            </tr>
+        </tfoot>
     )
 }
 

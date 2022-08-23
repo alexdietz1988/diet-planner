@@ -1,7 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { connect } from 'react-redux'
 
 import EditBasicsUI from "./EditBasicsUI"
 
@@ -39,10 +38,4 @@ function EditBasics({ basics, backend, user }) {
     return <EditBasicsUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData}/>
 }
 
-function mapStateToProps(state) {
-    return({
-        user: state.user
-    })
-}
-
-export default connect(mapStateToProps)(EditBasics)
+export default EditBasics
