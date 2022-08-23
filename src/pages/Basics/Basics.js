@@ -24,7 +24,7 @@ function Basics({ backend, basics, setBasics, setTargets, user, goal }) {
             .catch((error) => console.log(error))
     }
 
-    useEffect(() => {getBasics()}, [])
+    useEffect(() => {getUserInfo()}, [])
 
     return <BasicsUI user={user} basics={basics}/>
 }

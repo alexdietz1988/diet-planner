@@ -13,7 +13,7 @@ function YourDietUI({ meals, setMeal, deleteMeal, diet, targets}) {
                 <TableFooter diet={diet} targets={targets}/>
             </table>
 
-            <Analysis diet={diet} targets={targets}/>
+            <Analysis dietTotals={props.dietTotals} targets={props.targets}/>
         </section>
     )
 }

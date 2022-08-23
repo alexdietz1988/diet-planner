@@ -1,6 +1,6 @@
 function TableFooter(props) {
-    let calorieColor = props.diet.calories < props.targets.calories ? 'success' : 'danger'
-    let proteinColor = props.diet.protein < props.targets.protein ? 'danger' : 'success'
+    let calorieColor = props.dietTotals.calories < props.targets.calories ? 'success' : 'danger'
+    let proteinColor = props.dietTotals.protein < props.targets.protein ? 'danger' : 'success'
 
     return(
         <tfoot>
@@ -11,12 +11,12 @@ function TableFooter(props) {
             </th>
 
             <th>
-                <p className={'has-text-' + calorieColor + ' mb-1'}>{props.diet.calories}</p>
+                <p className={'has-text-' + calorieColor + ' mb-1'}>{props.dietTotals.calories}</p>
                 <p className="has-text-weight-normal">{props.targets.calories}</p>
             </th>
 
             <th>
-                <p className={'has-text-' + proteinColor + ' mb-1'}>{props.diet.protein} g</p>
+                <p className={'has-text-' + proteinColor + ' mb-1'}>{props.dietTotals.protein} g</p>
                 <p className="has-text-weight-normal">{props.targets.protein} g</p>
             </th>
         </tr>
