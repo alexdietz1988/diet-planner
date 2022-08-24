@@ -36,7 +36,7 @@ function App() {
             <Route path='/your-diet' element={<YourDiet user={user} backend={backend} targets={targets} setMeal={setMeal} />} />
             
             <Route path='add-meal' element={<AddMeal user={user} backend={backend}/>} />
-            <Route path='edit-meal' element={<EditMeal user={user}backend={backend} meal={meal}/>} />
+            <Route path='edit-meal' element={<EditMeal user={user} backend={backend} meal={meal}/>} />
           </Routes>
       </section>
 
