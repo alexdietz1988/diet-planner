@@ -21,7 +21,7 @@ function EditBasics({ basics, user }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        requestEditBasics(user)
+        requestEditBasics(user, formData)
             .then(({ data }) => {
                 if (data === 'successfully updated user info') {
                     navigate('/basics')

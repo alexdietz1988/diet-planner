@@ -4,11 +4,11 @@ function TableTop(props) {
     return(
         <>
         <thead>
-                <tr>
-                    <th>Meal</th>
-                    <th>Calories</th>
-                    <th>Protein</th>
-                </tr>
+            <tr>
+                <th>Meal</th>
+                <th>Calories</th>
+                <th>Protein</th>
+            </tr>
         </thead>
         
         <tbody>

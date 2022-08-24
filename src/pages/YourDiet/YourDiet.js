@@ -8,7 +8,7 @@ function YourDiet(props) {
     const [dietTotals, setDietTotals] = useState({calories: 0, protein: 0})
 
     function getMeals() {
-        requestGetMeals(user)
+        requestGetMeals(props.user)
             .then((response) => {
                 let [calories, protein] = [0,0]
                 for (let meal of response.data) {

@@ -22,17 +22,17 @@ function Auth(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        requestLogin(page, formData)
-            .then(({ data }) => {
-                if (data === 'invalid username or password' || data === 'user already exists') {
-                    setWarning(data)
+        requestLogin(props.page, formData)
+            .then((response) => {
+                if (response.data === 'invalid username or password' || response.data === 'user already exists') {
+                    setWarning(response.data)
                 }
                 else {
                     props.setUser(formData.username)
                     navigate('/basics')
                 }
             })
-        .catch((error) => console.log(error))
+            .catch((error) => console.log(error))
     }
 
     return (
