@@ -39,7 +39,7 @@ function AddMeal({ backend, user }) {
     return (
         <>
         <h4 className="title is-4">Add a meal</h4>
-        <MealForm handleChange={handleChange} handleSubmit={handleSubmit}/>
+        <MealForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
         </>
     )
 }
