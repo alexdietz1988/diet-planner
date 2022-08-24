@@ -1,10 +1,10 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import MealForm from "../components/MealForm"
+import { requestEditMeal } from "../apis/backend"
 
-function EditMeal({meal, backend, user}) {
+function EditMeal({meal, user}) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -22,18 +22,13 @@ function EditMeal({meal, backend, user}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.put(backend + `meal/?id=${meal.id}`, {
-            username: user,
-            name: formData.name,
-            calories: formData.calories,
-            protein: formData.protein
-        })
-        .then((response) => {
-            if (response.data === 'successfully updated meal') {
-                navigate('/your-diet')
-            }
-        })
-        .catch((error) => console.log(error))
+        requestEditMeal(user, meal.id, formData)
+            .then(({ data }) => {
+                if (data === 'successfully updated meal') {
+                    navigate('/your-diet')
+                }
+            })
+            .catch((error) => console.log(error))
     }
 
     return (

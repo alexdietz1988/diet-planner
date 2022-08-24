@@ -1,14 +1,14 @@
-import axios from "axios"
 import { useEffect } from "react"
 
 import BasicsUI from "./BasicsUI"
+import { requestGetBasics } from '../../apis/backend'
 
-function Basics({ backend, basics, setBasics, setTargets, user, goal }) {
+function Basics({ basics, setBasics, setTargets, user}) {
 
     function getBasics() {
-        axios.get(backend + `basics/?username=${user}`)
-            .then((response) => {
-                setBasics({weight: parseInt(response.data.weight), goal: response.data.goal, TDEE: parseInt(response.data.TDEE)})
+        requestGetBasics(user)
+            .then(({ data }) => {
+                setBasics({weight: parseInt(data.weight), goal: data.goal, TDEE: parseInt(data.TDEE)})
                 switch(goal) {
                     case 'cut':
                         setTargets({calories: basics.TDEE * 0.75, protein: basics.weight * 1.1})

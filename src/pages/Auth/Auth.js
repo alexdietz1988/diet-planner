@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
 
 import AuthForm from "./AuthForm"
+import { requestLogin } from '../../apis/backend'
 
 function Auth(props) {
     let navigate = useNavigate()
@@ -22,20 +22,17 @@ function Auth(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(props.backend + `auth/${props.page}`, {
-            username: formData.username,
-            password: formData.password
-        })
-        .then(({ data }) => {
-            if (data === 'invalid username or password' || data === 'user already exists') {
-                setWarning(data)
-            }
-            else {
-                props.setUser(formData.username)
-                navigate('/basics')
-            }
-        })
-        .catch((error) => console.log(error))
+        requestLogin(props.page, formData)
+            .then((response) => {
+                if (response.data === 'invalid username or password' || response.data === 'user already exists') {
+                    setWarning(response.data)
+                }
+                else {
+                    props.setUser(formData.username)
+                    navigate('/basics')
+                }
+            })
+            .catch((error) => console.log(error))
     }
 
     return (
