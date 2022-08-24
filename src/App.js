@@ -11,8 +11,6 @@ import AddMeal from './pages/AddMeal'
 import EditMeal from './pages/EditMeal'
 
 function App() {
-  const backend = 'http://localhost:4000/'
-
   const [user, setUser] = useState('')
   const [basics, setBasics] = useState({weight: 0, goal: 'maintain', TDEE: 0})
   const [targets, setTargets] = useState({calories: 0, protein: 0})
@@ -27,16 +25,16 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Landing />} />
 
-            <Route path='/signup' element={<Auth backend={backend} user={user} setUser={setUser} page="signup"/>} />
-            <Route path='/login' element={<Auth backend={backend} user={user} setUser={setUser} page="login"/>} />
+            <Route path='/signup' element={<Auth user={user} setUser={setUser} page="signup"/>} />
+            <Route path='/login' element={<Auth user={user} setUser={setUser} page="login"/>} />
 
-            <Route path='/basics' element={<Basics user={user} backend={backend} basics={basics} setBasics={setBasics} setTargets={setTargets}/>} />
-            <Route path='/edit-basics' element={<EditBasics user={user} backend={backend} basics={basics} setBasics={setBasics}/>} />
+            <Route path='/basics' element={<Basics user={user} basics={basics} setBasics={setBasics} setTargets={setTargets}/>} />
+            <Route path='/edit-basics' element={<EditBasics user={user} basics={basics} setBasics={setBasics}/>} />
 
-            <Route path='/your-diet' element={<YourDiet user={user} backend={backend} targets={targets} setMeal={setMeal} />} />
+            <Route path='/your-diet' element={<YourDiet user={user} targets={targets} setMeal={setMeal} />} />
             
-            <Route path='add-meal' element={<AddMeal user={user} backend={backend}/>} />
-            <Route path='edit-meal' element={<EditMeal user={user} backend={backend} meal={meal}/>} />
+            <Route path='add-meal' element={<AddMeal user={user} />} />
+            <Route path='edit-meal' element={<EditMeal user={user} meal={meal}/>} />
           </Routes>
       </section>
 

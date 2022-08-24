@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 
 import YourDietUI from "./YourDietUI"
+import { requestGetMeals, requestDeleteMeal } from "../../apis/backend"
 
 function YourDiet(props) {
     const [meals, setMeals] = useState([])
     const [dietTotals, setDietTotals] = useState({calories: 0, protein: 0})
 
     function getMeals() {
-        axios.get(props.backend + `meal/?username=${props.user}`)
+        requestGetMeals(user)
             .then((response) => {
                 let [calories, protein] = [0,0]
                 for (let meal of response.data) {
@@ -22,9 +22,9 @@ function YourDiet(props) {
     }
 
     function deleteMeal(mealId) {
-        axios.delete(props.backend + `meal/?id=${mealId}`)
-            .then((response) => {
-                if (response.data === 'successfully deleted meal') {
+        requestDeleteMeal(mealId)
+            .then(({ data }) => {
+                if (data === 'successfully deleted meal') {
                     getMeals()
                 }
         })

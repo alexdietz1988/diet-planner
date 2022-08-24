@@ -1,10 +1,10 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import MealForm from "../components/MealForm"
+import { requestAddMeal } from "../apis/backend"
 
-function AddMeal({ backend, user }) {
+function AddMeal({ user }) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -22,18 +22,13 @@ function AddMeal({ backend, user }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post(backend + `meal/?username=${user}`, {
-            username: user,
-            name: formData.name,
-            calories: formData.calories,
-            protein: formData.protein
-        })
-        .then((response) => {
-            if (response.data === 'successfully added meal') {
-                navigate('/your-diet')
-            }
-        })
-        .catch((error) => console.log(error))
+        requestAddMeal(user, formData)
+            .then(({ data }) => {
+                if (data === 'successfully added meal') {
+                    navigate('/your-diet')
+                }
+            })
+            .catch((error) => console.log(error))
     }
 
     return (

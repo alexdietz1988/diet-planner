@@ -1,10 +1,10 @@
 import { useState } from "react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 import EditBasicsUI from "./EditBasicsUI"
+import { requestEditBasics } from '../../apis/backend'
 
-function EditBasics({ basics, backend, user }) {
+function EditBasics({ basics, user }) {
     let navigate = useNavigate()
     const [formData, setFormData] = useState({
         weight: basics.weight,
@@ -21,18 +21,13 @@ function EditBasics({ basics, backend, user }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axios.put(backend + `basics/?username=${user}`, {
-            username: user,
-            weight: formData.weight,
-            goal: formData.goal,
-            TDEE: formData.TDEE
-        })
-        .then((response) => {
-            if (response.data === 'successfully updated user info') {
-                navigate('/basics')
-            }
-        })
-        .catch((error) => console.log(error))
+        requestEditBasics(user)
+            .then(({ data }) => {
+                if (data === 'successfully updated user info') {
+                    navigate('/basics')
+                }
+            })
+            .catch((error) => console.log(error))
     }
 
     return <EditBasicsUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData}/>
