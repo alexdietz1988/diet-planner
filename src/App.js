@@ -1,4 +1,4 @@
-import { Route, Routes} from "react-router-dom"
+import { Route, Routes} from 'react-router-dom'
 import { useState } from 'react'
 
 import Header from './components/Header'
@@ -11,7 +11,6 @@ import AddMeal from './pages/AddMeal'
 import EditMeal from './pages/EditMeal'
 
 function App() {
-  const [basics, setBasics] = useState({weight: 0, goal: 'maintain', TDEE: 0})
   const [targets, setTargets] = useState({calories: 0, protein: 0})
   const [meal, setMeal] = useState({})
 
@@ -27,8 +26,8 @@ function App() {
             <Route path='/signup' element={<Auth page='signup'/>} />
             <Route path='/login' element={<Auth page='login'/>} />
 
-            <Route path='/basics' element={<Basics basics={basics} setBasics={setBasics} setTargets={setTargets}/>} />
-            <Route path='/edit-basics' element={<EditBasics basics={basics} setBasics={setBasics}/>} />
+            <Route path='/basics' element={<Basics setTargets={setTargets}/>} />
+            <Route path='/edit-basics' element={<EditBasics />} />
 
             <Route path='/your-diet' element={<YourDiet targets={targets} setMeal={setMeal} />} />
             

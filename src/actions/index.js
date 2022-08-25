@@ -4,3 +4,16 @@ export function setUser(user) {
         payload: user
     }
 }
+
+export function setBasics(data) {
+    return {
+        type: 'SET_BASICS',
+        payload: {
+            weight: data.weight,
+            goal: data.goal,
+            TDEE: data.TDEE
+        }
+    }
+}
+
+// const [basics, setBasics] = useState({weight: 0, goal: 'maintain', TDEE: 0})

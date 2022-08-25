@@ -1,15 +1,20 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import BasicsUI from "./BasicsUI"
+import BasicsUI from './BasicsUI'
 import { requestGetBasics } from '../../apis/backend'
+import { setBasics } from '../../actions'
 
 function Basics({ basics, setBasics, setTargets, user}) {
 
     function getBasics() {
         requestGetBasics(user)
             .then(({ data }) => {
-                setBasics({weight: parseInt(data.weight), goal: data.goal, TDEE: parseInt(data.TDEE)})
+                setBasics({
+                    weight: parseInt(data.weight),
+                    goal: data.goal,
+                    TDEE: parseInt(data.TDEE)
+                })
                 switch(basics.goal) {
                     case 'cut':
                         setTargets({calories: basics.TDEE * 0.75, protein: basics.weight * 1.1})
@@ -26,13 +31,14 @@ function Basics({ basics, setBasics, setTargets, user}) {
 
     useEffect(() => {getBasics()}, [])
 
-    return <BasicsUI basics={basics}/>
+    return <BasicsUI />
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        basics: state.basics
     }
 }
 
-export default connect(mapStateToProps)(Basics)
+export default connect(mapStateToProps, { setBasics })(Basics)

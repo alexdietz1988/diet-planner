@@ -37,7 +37,6 @@ function YourDiet(props) {
         meals={meals}
         deleteMeal={deleteMeal}
         setMeal={props.setMeal}
-        diet={props.diet}
         dietTotals={dietTotals}
         targets={props.targets}/>
 }

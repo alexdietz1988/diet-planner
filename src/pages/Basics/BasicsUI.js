@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 function BasicsUI({ basics }) {
     return(
@@ -15,4 +16,8 @@ function BasicsUI({ basics }) {
     )
 }
 
-export default BasicsUI
+function mapStateToProps(state) {
+    return {basics: state.basics}
+}
+
+export default connect(mapStateToProps)(BasicsUI)
