@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { selectMeal } from '../../../actions'
 
 function TableTop(props) {
     return(
@@ -16,22 +19,26 @@ function TableTop(props) {
                 <tr key={meal._id}>
                     <td>{meal.name}</td><td>{meal.calories}</td><td>{meal.protein} g</td>
                     <td>
-                        <div className="tags">
-                            <Link to='/edit-meal' onClick={() => props.setMeal(
+                        <div className='tags'>
+                            <Link to='/edit-meal' onClick={() => props.selectMeal(
                                 {id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
-                                <div className="tag is-warning mx-1">Edit</div>
+                                <div className='tag is-warning mx-1'>Edit</div>
                             </Link>
-                            <a className="tag is-danger mx-1" onClick={() => props.deleteMeal(meal._id)}>Delete</a>
+                            <a className='tag is-danger mx-1' onClick={() => props.deleteMeal(meal._id)}>Delete</a>
                         </div>
                     </td>
                 </tr>
             ))}
             <tr>
-                <td><Link to='/add-meal'><button className="button is-small is-info">Add a meal</button></Link></td>
+                <td><Link to='/add-meal'><button className='button is-small is-info'>Add a meal</button></Link></td>
             </tr>
         </tbody>
         </>
     )
 }
 
-export default TableTop
+function mapStateToProps(state) {
+    return {}
+}
+
+export default connect(mapStateToProps, { selectMeal })(TableTop)

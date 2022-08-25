@@ -1,9 +1,11 @@
-function Analysis(props) {
-    let calorieDifference = props.targets.calories - props.dietTotals.calories
-    let proteinDifference = props.targets.protein - props.dietTotals.protein
+import { connect } from 'react-redux'
+
+function Analysis({ targetCalories, targetProtein, dietTotals }) {
+    let calorieDifference = targetCalories - dietTotals.calories
+    let proteinDifference = targetProtein - dietTotals.protein
     
     return (
-        <div className="content">
+        <div className='content'>
                 {calorieDifference > 0 ?
                     <p>You have room for <b>{calorieDifference}</b> more calories.</p>
                     : <p>You are <b>{-calorieDifference}</b> calories over your limit.</p>}
@@ -14,4 +16,11 @@ function Analysis(props) {
     )
 }
 
-export default Analysis
+function mapStateToProps(state) {
+    return {
+        targetCalories: state.basics.targetCalories,
+        targetProtein: state.basics.targetProtein
+    }
+}
+
+export default connect(mapStateToProps)(Analysis)

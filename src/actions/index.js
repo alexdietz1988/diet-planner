@@ -5,15 +5,24 @@ export function setUser(user) {
     }
 }
 
-export function setBasics(data) {
+export function setBasics(weight, goal, TDEE) {
+    let [targetCalories, targetProtein] = [TDEE, weight]
+    
+    if (goal === 'cut') {
+        targetCalories *= 0.75
+        targetProtein *= 1.1
+    
+    } else if (goal === 'bulk') targetCalories *= 1.1
+
     return {
         type: 'SET_BASICS',
-        payload: {
-            weight: data.weight,
-            goal: data.goal,
-            TDEE: data.TDEE
-        }
+        payload: {weight, goal, TDEE, targetCalories, targetProtein}
     }
 }
 
-// const [basics, setBasics] = useState({weight: 0, goal: 'maintain', TDEE: 0})
+export function selectMeal(meal) {
+    return {
+        type: 'SELECT_MEAL',
+        payload: meal
+    }
+}

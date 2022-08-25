@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 import MealForm from '../components/MealForm'
 import { requestEditMeal } from '../apis/backend'
 
-function EditMeal({meal, user}) {
+function EditMeal({selectedMeal, user}) {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        name: meal.name,
-        calories: meal.calories,
-        protein: meal.protein
+        name: selectedMeal.name,
+        calories: selectedMeal.calories,
+        protein: selectedMeal.protein
     })
 
     function handleChange(e) {
@@ -23,11 +23,9 @@ function EditMeal({meal, user}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        requestEditMeal(user, meal.id, formData)
+        requestEditMeal(user, selectedMeal.id, formData)
             .then(({ data }) => {
-                if (data === 'successfully updated meal') {
-                    navigate('/your-diet')
-                }
+                if (data === 'success') navigate('/your-diet')
             })
             .catch((error) => console.log(error))
     }
@@ -42,7 +40,8 @@ function EditMeal({meal, user}) {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        selectedMeal: state.selectedMeal
     }
 }
 

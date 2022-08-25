@@ -10,7 +10,13 @@ function setBasicsReducer(basics = {weight: 0, goal: 'maintain', TDEE: 0}, actio
     return basics
 }
 
+function selectMealReducer(selectedMeal = {}, action) {
+    if (action.type === 'SELECT_MEAL') return action.payload
+    return selectedMeal
+}
+
 export default combineReducers({
     user: setUserReducer,
-    basics: setBasicsReducer
+    basics: setBasicsReducer,
+    selectedMeal: selectMealReducer
 })

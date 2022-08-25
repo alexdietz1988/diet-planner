@@ -25,9 +25,7 @@ function YourDiet(props) {
     function deleteMeal(mealId) {
         requestDeleteMeal(mealId)
             .then(({ data }) => {
-                if (data === 'successfully deleted meal') {
-                    getMeals()
-                }
+                if (data === 'success') getMeals()
         })
         .catch((error) => console.log(error))
     }
@@ -36,9 +34,7 @@ function YourDiet(props) {
     return <YourDietUI 
         meals={meals}
         deleteMeal={deleteMeal}
-        setMeal={props.setMeal}
-        dietTotals={dietTotals}
-        targets={props.targets}/>
+        dietTotals={dietTotals}/>
 }
 
 function mapStateToProps(state) {
