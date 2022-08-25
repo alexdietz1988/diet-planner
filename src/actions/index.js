@@ -20,6 +20,19 @@ export function setBasics(weight, goal, TDEE) {
     }
 }
 
+export function setDiet(meals) {
+    let [calories, protein] = [0,0]
+    for (let meal of meals) {
+        calories += parseInt(meal.calories)
+        protein += parseInt(meal.protein)
+    }
+
+    return {
+        type: 'SET_DIET',
+        payload: {meals, calories, protein}
+    }
+}
+
 export function selectMeal(meal) {
     return {
         type: 'SELECT_MEAL',

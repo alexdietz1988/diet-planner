@@ -24,9 +24,7 @@ function EditBasics({ basics, user }) {
         e.preventDefault()
         requestEditBasics(user, formData)
             .then(({ data }) => {
-                if (data === 'successfully updated user info') {
-                    navigate('/basics')
-                }
+                if (data === 'success') navigate('/basics')
             })
             .catch((error) => console.log(error))
     }

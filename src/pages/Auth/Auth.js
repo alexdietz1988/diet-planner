@@ -39,16 +39,14 @@ function Auth(props) {
 
     return (
         <>
-        <h4 className="title is-4">{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
+        <h4 className='title is-4'>{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
         <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} warning={warning} />
         </>
     )
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.user
-    }
+    return {user: state.user}
 }
 
 export default connect(mapStateToProps, { setUser })(Auth)

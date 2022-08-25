@@ -10,6 +10,11 @@ function setBasicsReducer(basics = {weight: 0, goal: 'maintain', TDEE: 0}, actio
     return basics
 }
 
+function setDietReducer(diet = {meals: [], calories: 0, protein: 0}, action) {
+    if (action.type === 'SET_DIET') return action.payload
+    return diet
+}
+
 function selectMealReducer(selectedMeal = {}, action) {
     if (action.type === 'SELECT_MEAL') return action.payload
     return selectedMeal
@@ -18,5 +23,6 @@ function selectMealReducer(selectedMeal = {}, action) {
 export default combineReducers({
     user: setUserReducer,
     basics: setBasicsReducer,
+    diet: setDietReducer,
     selectedMeal: selectMealReducer
 })

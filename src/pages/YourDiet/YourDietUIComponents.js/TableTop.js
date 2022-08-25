@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { selectMeal } from '../../../actions'
 
-function TableTop(props) {
+function TableTop({ meals, selectMeal, deleteMeal }) {
     return(
         <>
         <thead>
@@ -15,16 +15,16 @@ function TableTop(props) {
         </thead>
         
         <tbody>
-            {props.meals.map(meal => (
+            {meals.map(meal => (
                 <tr key={meal._id}>
                     <td>{meal.name}</td><td>{meal.calories}</td><td>{meal.protein} g</td>
                     <td>
                         <div className='tags'>
-                            <Link to='/edit-meal' onClick={() => props.selectMeal(
+                            <Link to='/edit-meal' onClick={() => selectMeal(
                                 {id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
                                 <div className='tag is-warning mx-1'>Edit</div>
                             </Link>
-                            <a className='tag is-danger mx-1' onClick={() => props.deleteMeal(meal._id)}>Delete</a>
+                            <a className='tag is-danger mx-1' onClick={() => deleteMeal(meal._id)}>Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -38,7 +38,7 @@ function TableTop(props) {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return { meals: state.diet.meals }
 }
 
 export default connect(mapStateToProps, { selectMeal })(TableTop)

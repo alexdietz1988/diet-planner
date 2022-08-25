@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
-function TableFooter({targetCalories, targetProtein, dietTotals}) {
-    let calorieColor = dietTotals.calories < targetCalories ? 'success' : 'danger'
-    let proteinColor = dietTotals.protein < targetProtein ? 'danger' : 'success'
+function TableFooter({targetCalories, targetProtein, dietCalories, dietProtein}) {
+    let calorieColor = dietCalories < targetCalories ? 'success' : 'danger'
+    let proteinColor = dietProtein < targetProtein ? 'danger' : 'success'
 
     return(
         <tfoot>
@@ -13,12 +13,12 @@ function TableFooter({targetCalories, targetProtein, dietTotals}) {
                 </th>
 
                 <th>
-                    <p className={'has-text-' + calorieColor + ' mb-1'}>{dietTotals.calories}</p>
+                    <p className={'has-text-' + calorieColor + ' mb-1'}>{dietCalories}</p>
                     <p className="has-text-weight-normal">{targetCalories}</p>
                 </th>
 
                 <th>
-                    <p className={'has-text-' + proteinColor + ' mb-1'}>{dietTotals.protein} g</p>
+                    <p className={'has-text-' + proteinColor + ' mb-1'}>{dietProtein} g</p>
                     <p className="has-text-weight-normal">{targetProtein} g</p>
                 </th>
             </tr>
@@ -29,7 +29,9 @@ function TableFooter({targetCalories, targetProtein, dietTotals}) {
 function mapStateToProps(state) {
     return {
         targetCalories: state.basics.targetCalories,
-        targetProtein: state.basics.targetProtein
+        targetProtein: state.basics.targetProtein,
+        dietCalories: state.diet.calories,
+        dietProtein: state.diet.Protein
     }
 }
 

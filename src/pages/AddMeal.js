@@ -25,25 +25,21 @@ function AddMeal({ user }) {
         e.preventDefault()
         requestAddMeal(user, formData)
             .then(({ data }) => {
-                if (data === 'successfully added meal') {
-                    navigate('/your-diet')
-                }
+                if (data === 'success') navigate('/your-diet')
             })
             .catch((error) => console.log(error))
     }
 
     return (
         <>
-        <h4 className="title is-4">Add a meal</h4>
+        <h4 className='title is-4'>Add a meal</h4>
         <MealForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
         </>
     )
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.user
-    }
+    return {user: state.user}
 }
 
 export default connect(mapStateToProps)(AddMeal)

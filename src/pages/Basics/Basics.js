@@ -6,7 +6,6 @@ import { requestGetBasics } from '../../apis/backend'
 import { setBasics } from '../../actions'
 
 function Basics({ setBasics, user}) {
-
     function getBasics() {
         requestGetBasics(user)
             .then(({ data }) => {

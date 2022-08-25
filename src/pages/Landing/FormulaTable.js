@@ -1,6 +1,6 @@
 function FormulaTable() {
     return (
-        <table className="table">
+        <table className='table'>
         <thead>
             <tr>
                 <th>Diet</th>
