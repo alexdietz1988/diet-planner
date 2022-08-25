@@ -1,8 +1,9 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import MealForm from "../components/MealForm"
-import { requestAddMeal } from "../apis/backend"
+import MealForm from '../components/MealForm'
+import { requestAddMeal } from '../apis/backend'
 
 function AddMeal({ user }) {
     let navigate = useNavigate()
@@ -39,4 +40,10 @@ function AddMeal({ user }) {
     )
 }
 
-export default AddMeal
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(AddMeal)

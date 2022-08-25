@@ -1,8 +1,9 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import MealForm from "../components/MealForm"
-import { requestEditMeal } from "../apis/backend"
+import MealForm from '../components/MealForm'
+import { requestEditMeal } from '../apis/backend'
 
 function EditMeal({meal, user}) {
     let navigate = useNavigate()
@@ -33,10 +34,16 @@ function EditMeal({meal, user}) {
 
     return (
         <>
-        <h4 className="title is-4">Edit meal</h4>
+        <h4 className='title is-4'>Edit meal</h4>
         <MealForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} />
         </>
     )
 }
 
-export default EditMeal
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(EditMeal)

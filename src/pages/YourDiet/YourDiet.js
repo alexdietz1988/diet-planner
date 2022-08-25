@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 
-import YourDietUI from "./YourDietUI"
-import { requestGetMeals, requestDeleteMeal } from "../../apis/backend"
+import YourDietUI from './YourDietUI'
+import { requestGetMeals, requestDeleteMeal } from '../../apis/backend'
 
 function YourDiet(props) {
     const [meals, setMeals] = useState([])
@@ -9,14 +10,14 @@ function YourDiet(props) {
 
     function getMeals() {
         requestGetMeals(props.user)
-            .then((response) => {
+            .then(({ data }) => {
                 let [calories, protein] = [0,0]
-                for (let meal of response.data) {
+                for (let meal of data) {
                     calories += parseInt(meal.calories)
                     protein += parseInt(meal.protein)
                 }
                 setDietTotals({calories: calories, protein: protein})
-                setMeals(response.data)
+                setMeals(data)
             })
             .catch((error) => console.log(error))
     }
@@ -39,7 +40,12 @@ function YourDiet(props) {
         diet={props.diet}
         dietTotals={dietTotals}
         targets={props.targets}/>
-
 }
 
-export default YourDiet
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(YourDiet)
