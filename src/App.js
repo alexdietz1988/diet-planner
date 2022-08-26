@@ -20,7 +20,7 @@ function App() {
             <Route exact path='/' element={<Landing />} />
 
             <Route path='/signup' element={<Auth page='signup'/>} />
-            <Route path='/login' element={<Auth page='login'/>} />
+            <Route path='/login' element={<Auth page='login'/>}/>
 
             <Route path='/basics' element={<Basics />} />
             <Route path='/edit-basics' element={<EditBasics />} />
