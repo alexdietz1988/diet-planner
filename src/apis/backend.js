@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const backend = 'http://localhost:4000/'
+const backend = 'https://dietplanner-backend.herokuapp.com/'
 
 export function requestLogin(page, formData) {
     return axios.post(backend + `auth/${page}`, {

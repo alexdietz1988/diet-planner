@@ -1,7 +1,8 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import EditBasicsUI from "./EditBasicsUI"
+import EditBasicsUI from './EditBasicsUI'
 import { requestEditBasics } from '../../apis/backend'
 
 function EditBasics({ basics, user }) {
@@ -23,9 +24,7 @@ function EditBasics({ basics, user }) {
         e.preventDefault()
         requestEditBasics(user, formData)
             .then(({ data }) => {
-                if (data === 'successfully updated user info') {
-                    navigate('/basics')
-                }
+                if (data === 'success') navigate('/basics')
             })
             .catch((error) => console.log(error))
     }
@@ -33,4 +32,11 @@ function EditBasics({ basics, user }) {
     return <EditBasicsUI handleChange={handleChange} handleSubmit={handleSubmit} formData={formData}/>
 }
 
-export default EditBasics
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+        basics: state.basics
+    }
+}
+
+export default connect(mapStateToProps)(EditBasics)

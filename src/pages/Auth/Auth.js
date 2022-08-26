@@ -1,8 +1,10 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import AuthForm from "./AuthForm"
+import AuthForm from './AuthForm'
 import { requestLogin } from '../../apis/backend'
+import { setUser } from '../../actions'
 
 function Auth(props) {
     let navigate = useNavigate()
@@ -23,9 +25,9 @@ function Auth(props) {
     function handleSubmit(e) {
         e.preventDefault()
         requestLogin(props.page, formData)
-            .then((response) => {
-                if (response.data === 'invalid username or password' || response.data === 'user already exists') {
-                    setWarning(response.data)
+            .then(({ data }) => {
+                if (data === 'invalid username or password' || data === 'user already exists') {
+                    setWarning(data)
                 }
                 else {
                     props.setUser(formData.username)
@@ -37,10 +39,14 @@ function Auth(props) {
 
     return (
         <>
-        <h4 className="title is-4">{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
+        <h4 className='title is-4'>{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
         <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} warning={warning} />
         </>
     )
 }
 
-export default Auth
+function mapStateToProps(state) {
+    return {user: state.user}
+}
+
+export default connect(mapStateToProps, { setUser })(Auth)
