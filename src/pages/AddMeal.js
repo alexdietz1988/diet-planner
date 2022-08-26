@@ -8,11 +8,7 @@ import { requestAddMeal } from '../apis/backend'
 function AddMeal({ user }) {
     let navigate = useNavigate()
 
-    const [formData, setFormData] = useState({
-        name: '',
-        calories: '',
-        protein: ''
-    })
+    const [formData, setFormData] = useState({name: '', calories: '', protein: ''})
 
     function handleChange(e) {
         setFormData((prevState) => ({
