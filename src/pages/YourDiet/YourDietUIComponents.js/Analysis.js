@@ -21,7 +21,7 @@ function mapStateToProps(state) {
         targetCalories: state.basics.targetCalories,
         targetProtein: state.basics.targetProtein,
         dietCalories: state.diet.calories,
-        dietProtein: state.diet.Protein
+        dietProtein: state.diet.protein
     }
 }
 

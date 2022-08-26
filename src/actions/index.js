@@ -6,7 +6,7 @@ export function setUser(user) {
 }
 
 export function setBasics(weight, goal, TDEE) {
-    let [targetCalories, targetProtein] = [TDEE, weight]
+    let [targetCalories, targetProtein] = [parseInt(TDEE), parseInt(weight)]
     
     if (goal === 'cut') {
         targetCalories *= 0.75
