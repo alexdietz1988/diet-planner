@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 
 function setUserReducer(user = null, action) {
     if (action.type === 'SET_USER') return action.payload
@@ -24,5 +25,6 @@ export default combineReducers({
     user: setUserReducer,
     basics: setBasicsReducer,
     diet: setDietReducer,
-    selectedMeal: selectMealReducer
+    selectedMeal: selectMealReducer,
+    form: formReducer
 })

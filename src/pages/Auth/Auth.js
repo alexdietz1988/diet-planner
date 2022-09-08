@@ -9,30 +9,21 @@ import { setUser } from '../../actions'
 function Auth(props) {
     let navigate = useNavigate()
 
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    })
-    const [warning, setWarning] = useState('')
+    const [warning, setWarning] = useState('default warning')
 
-    function handleChange(e) {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        requestLogin(props.page, formData)
-            .then(({ data }) => {
-                if (data === 'invalid username or password' || data === 'user already exists') {
-                    setWarning(data)
+    function onSubmit(formValues) {
+        requestLogin(props.page, formValues)
+            .then((response) => {
+                console.log(response)
+                if (response.data === 'invalid username or password' || response.data === 'user already exists') {
+                    setWarning(response.data)
+                    console.log(warning)
                 }
-                else {
-                    props.setUser(formData.username)
+                else if (response.data === 'success') {
+                    props.setUser(formValues.username)
                     navigate('/basics')
                 }
+                else setWarning('something went wrong')
             })
             .catch((error) => console.log(error))
     }
@@ -40,7 +31,7 @@ function Auth(props) {
     return (
         <>
         <h4 className='title is-4'>{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
-        <AuthForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} warning={warning} />
+        <AuthForm onSubmit={onSubmit} warningMessage={warning} />
         </>
     )
 }
