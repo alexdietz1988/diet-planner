@@ -19,10 +19,9 @@ function AuthForm(props) {
             {props.warningMessage === 'user already exists' ? 
                 <p className='help is-danger'>There's already an account with that username. If it's you, please login; otherwise, enter a different username.</p>
                 : ''}
-            <Field name='password' component={renderInput} label='Password' warning={props.warningMessage} />
+            <Field name='password' component={renderInput} label='Password' />
             <Submit cancel='/' />
             {props.warningMessage === 'invalid username or password' ? <p>Invalid username or password.</p> : ''}
-            {props.warningMessage}
         </form>
     )
 }
