@@ -11,7 +11,6 @@ import EditMeal from './pages/EditMeal'
 
 function App() {
   return (
-    <>
     <section className='section'>
       <Header />
 
@@ -33,7 +32,6 @@ function App() {
       </section>
 
     </section>
-    </>
   )
 }
 
