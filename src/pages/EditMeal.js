@@ -1,48 +1,51 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-
-import MealForm from '../components/MealForm'
+import { Field, reduxForm } from 'redux-form'
+import Submit from '../components/Submit'
 import { requestEditMeal } from '../apis/backend'
 
-function EditMeal({selectedMeal, user}) {
+let EditMeal = (props) => {
     let navigate = useNavigate()
 
-    const [formData, setFormData] = useState({
-        name: selectedMeal.name,
-        calories: selectedMeal.calories,
-        protein: selectedMeal.protein
-    })
-
-    function handleChange(e) {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault()
-        requestEditMeal(user, selectedMeal.id, formData)
+    function onSubmit(formValues) {
+        requestEditMeal(props.user, props.selectedMeal.id, formValues)
             .then(({ data }) => {
                 if (data === 'success') navigate('/your-diet')
             })
             .catch((error) => console.log(error))
     }
 
-    return (
-        <>
-        <h4 className='title is-4'>Edit meal</h4>
-        <MealForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} />
-        </>
+    function renderInput(props) {
+        return(
+            <div className='field'>
+                <label className='label'>{props.label}</label>
+                <div className='control'>
+                    <input className='input' {...props.input} required/>
+                </div>
+            </div>
+        )
+    }
+
+    return(
+        <section className='section'>
+            <h4 className='title is-4'>Edit meal</h4>
+            <form onSubmit={props.handleSubmit(onSubmit)}>
+                <Field name='name' label='Name' component={renderInput} />
+                <Field name='calories' label='Calories' type='number' component={renderInput} />
+                <Field name='protein' label='Protein' type='number' component={renderInput} />
+                <Submit cancel='/your-diet'/>
+            </form>
+        </section>
     )
 }
 
 function mapStateToProps(state) {
     return {
         user: state.user,
-        selectedMeal: state.selectedMeal
+        selectedMeal: state.selectedMeal,
+        initialValues: state.selectedMeal
     }
 }
 
+EditMeal = reduxForm({form: 'mealForm'})(EditMeal)
 export default connect(mapStateToProps)(EditMeal)
