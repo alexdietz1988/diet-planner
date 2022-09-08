@@ -4,7 +4,7 @@ import Submit from '../../components/Submit'
 function renderInput(props) {
     return (
         <div className='field'>
-            <label className='label'>{props.label}</label>
+            <label className='label' htmlFor={props.input.name}>{props.label}</label>
             <div className='control'>
                 <input className='input' {...props.input} required />
             </div>

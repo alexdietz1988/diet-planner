@@ -14,10 +14,8 @@ function Auth(props) {
     function onSubmit(formValues) {
         requestLogin(props.page, formValues)
             .then((response) => {
-                console.log(response)
                 if (response.data === 'invalid username or password' || response.data === 'user already exists') {
                     setWarning(response.data)
-                    console.log(warning)
                 }
                 else if (response.data === 'success') {
                     props.setUser(formValues.username)
