@@ -2,18 +2,18 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import YourDietUI from './YourDietUI'
-import { requestGetMeals, requestDeleteMeal } from '../../apis/backend'
+import { fetchMeals, deleteMeal } from '../../apis/backend'
 import { setDiet } from '../../actions'
 
 function YourDiet({ user, setDiet }) {
     function getMeals() {
-        requestGetMeals(user)
+        fetchMeals(user)
             .then(({ data }) => setDiet(data))
             .catch((error) => console.log(error))
     }
 
     function deleteMeal(mealId) {
-        requestDeleteMeal(mealId)
+        deleteMeal(mealId)
             .then(({ data }) => {
                 if (data === 'success') getMeals()
             })

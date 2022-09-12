@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import Submit from '../components/Submit'
-import { requestEditMeal } from '../apis/backend'
+import { editMeal } from '../apis/backend'
 
 let EditMeal = (props) => {
     let navigate = useNavigate()
 
     function onSubmit(formValues) {
-        requestEditMeal(props.user, props.selectedMeal.id, formValues)
+        editMeal(props.user, props.selectedMeal.id, formValues)
             .then(({ data }) => {
                 if (data === 'success') navigate('/your-diet')
             })

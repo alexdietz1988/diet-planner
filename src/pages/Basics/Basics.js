@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import BasicsUI from './BasicsUI'
-import { requestGetBasics } from '../../apis/backend'
+import { fetchBasics } from '../../apis/backend'
 import { setBasics } from '../../actions'
 
 function Basics({ setBasics, user}) {
     function getBasics() {
-        requestGetBasics(user)
+        fetchBasics(user)
             .then(({ data }) => {
                 setBasics(parseInt(data.weight), data.goal, parseInt(data.TDEE))
             })

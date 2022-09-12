@@ -1,9 +1,8 @@
 import { LOGIN, LOGOUT, SET_BASICS, FETCH_MEALS, SELECT_MEAL } from './types'
 import { diet } from '../apis/backend'
 
-export const login = (page, formData) => async (dispatch) => {
+export const login = (page, formData) => async dispatch => {
     const response = await diet.post(`auth/${page}`, formData)
-    console.log(response)
     let payload
     
     if (['invalid username or password', 'user already exists'].includes(response.data)) {
@@ -14,7 +13,6 @@ export const login = (page, formData) => async (dispatch) => {
 
     dispatch({ type: LOGIN, payload})
 }
-
 
 export const logout = () => {
     return { type: LOGOUT }

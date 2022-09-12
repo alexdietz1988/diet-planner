@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import EditBasicsUI from './EditBasicsUI'
-import { requestEditBasics } from '../../apis/backend'
+import { editBasics } from '../../apis/backend'
 
 function EditBasics({ user }) {
     let navigate = useNavigate()
 
     function onSubmit(formValues) {
-        requestEditBasics(user, formValues)
+        editBasics(user, formValues)
             .then(({ data }) => {
                 if (data === 'success') navigate('/basics')
             })
