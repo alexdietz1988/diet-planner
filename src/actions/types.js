@@ -1,0 +1,5 @@
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const FETCH_MEALS = 'FETCH_MEALS'
+export const SET_BASICS = 'SET_BASICS'
+export const SELECT_MEAL = 'SELECT_MEAL'

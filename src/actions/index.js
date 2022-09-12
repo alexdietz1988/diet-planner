@@ -1,8 +1,23 @@
-export function setUser(user) {
-    return {
-        type: 'SET_USER',
-        payload: user
-    }
+import { LOGIN, LOGOUT, SET_BASICS, FETCH_MEALS, SELECT_MEAL } from './types'
+import { diet } from '../apis/backend'
+
+export const login = (page, formData) => async (dispatch) => {
+    const response = await diet.post(`auth/${page}`, formData)
+    console.log(response)
+    let payload
+    
+    if (['invalid username or password', 'user already exists'].includes(response.data)) {
+        payload = { "warning": response.data }
+    } else if (response.data === 'success') {
+        payload = { "user": formData.username }
+    } else payload = { "warning": response }
+
+    dispatch({ type: LOGIN, payload})
+}
+
+
+export const logout = () => {
+    return { type: LOGOUT }
 }
 
 export function setBasics(weight, goal, TDEE) {
@@ -15,7 +30,7 @@ export function setBasics(weight, goal, TDEE) {
     } else if (goal === 'bulk') targetCalories *= 1.1
 
     return {
-        type: 'SET_BASICS',
+        type: SET_BASICS,
         payload: {weight, goal, TDEE, targetCalories, targetProtein}
     }
 }
@@ -28,14 +43,14 @@ export function setDiet(meals) {
     }
 
     return {
-        type: 'SET_DIET',
+        type: FETCH_MEALS,
         payload: {meals, calories, protein}
     }
 }
 
 export function selectMeal(meal) {
     return {
-        type: 'SELECT_MEAL',
+        type: SELECT_MEAL,
         payload: meal
     }
 }

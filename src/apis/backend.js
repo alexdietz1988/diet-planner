@@ -1,12 +1,8 @@
 import axios from 'axios'
 
-const diet = axios.create({
+export const diet = axios.create({
     baseURL: 'https://dietplanner-backend.herokuapp.com/'
 })
-
-export function requestLogin(page, formData) {
-    return diet.post(`auth/${page}`, formData)
-}
 
 export function requestAddMeal(username, formData) {
     return diet.post(`meal/?username=${username}`, {username, ...formData})

@@ -1,41 +1,35 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 
 import AuthForm from './AuthForm'
-import { requestLogin } from '../../apis/backend'
-import { setUser } from '../../actions'
+import { login } from '../../actions'
+import { useEffect } from 'react'
 
 function Auth(props) {
     let navigate = useNavigate()
-
-    const [warning, setWarning] = useState('default warning')
+    const dispatch = useDispatch()
 
     function onSubmit(formValues) {
-        requestLogin(props.page, formValues)
-            .then((response) => {
-                if (response.data === 'invalid username or password' || response.data === 'user already exists') {
-                    setWarning(response.data)
-                }
-                else if (response.data === 'success') {
-                    props.setUser(formValues.username)
-                    navigate('/basics')
-                }
-                else setWarning('something went wrong')
-            })
-            .catch((error) => console.log(error))
+        dispatch(login(props.page, formValues))
     }
+
+    useEffect(() => {
+        if (props.isSignedIn) navigate('/basics')
+    }, [props.isSignedIn])
 
     return (
         <>
         <h4 className='title is-4'>{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
-        <AuthForm onSubmit={onSubmit} warningMessage={warning} />
+        <AuthForm onSubmit={onSubmit} warningMessage={props.warning} />
         </>
     )
 }
 
 function mapStateToProps(state) {
-    return {user: state.user}
+    return { 
+        isSignedIn: state.auth.isSignedIn,
+        warning: state.auth.warning
+    }
 }
 
-export default connect(mapStateToProps, { setUser })(Auth)
+export default connect(mapStateToProps, { login })(Auth)
