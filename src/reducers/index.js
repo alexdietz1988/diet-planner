@@ -1,6 +1,11 @@
+import _ from 'lodash'
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import { LOGIN, LOGOUT, SET_BASICS, SELECT_MEAL, FETCH_MEALS } from '../actions/types'
+import { 
+    LOGIN, LOGOUT,
+    FETCH_BASICS, EDIT_BASICS, 
+    CREATE_MEAL, EDIT_MEAL, DELETE_MEAL, FETCH_MEALS
+    } from '../actions/types'
 
 function authReducer(auth = { isSignedIn: false }, action) {
     switch(action.type) {
@@ -14,25 +19,33 @@ function authReducer(auth = { isSignedIn: false }, action) {
     return auth
 }
 
-function setBasicsReducer(basics = {weight: 0, goal: 'maintain', TDEE: 0}, action) {
-    if (action.type === SET_BASICS) return action.payload
+function basicsReducer(basics = {weight: 0, goal: 'maintain', TDEE: 0}, action) {
+    switch (action.type) {
+        case FETCH_BASICS:
+            return action.payload
+        case EDIT_BASICS:
+            return action.payload
+    }
     return basics
 }
 
-function setDietReducer(diet = {meals: [], calories: 0, protein: 0}, action) {
-    if (action.type === FETCH_MEALS ) return action.payload
-    return diet
-}
-
-function selectMealReducer(selectedMeal = {}, action) {
-    if (action.type === SELECT_MEAL) return action.payload
-    return selectedMeal
+function mealsReducer(meals = {}, action) {
+    switch (action.type) {
+        case FETCH_MEALS:
+            return { ...action.payload }
+        case CREATE_MEAL:
+            return { ...meals, [action.payload.id]: action.payload }
+        case EDIT_MEAL:
+            return { ...meals, [action.payload.id]: action.payload } 
+        case DELETE_MEAL:
+            return _.omit(meals, action.payload)
+    }
+    return meals
 }
 
 export default combineReducers({
     auth: authReducer,
-    basics: setBasicsReducer,
-    diet: setDietReducer,
-    selectedMeal: selectMealReducer,
+    basics: basicsReducer,
+    meals: mealsReducer,
     form: formReducer
 })

@@ -1,6 +1,22 @@
 import { connect } from 'react-redux'
 
-function Analysis({ targetCalories, targetProtein, dietCalories, dietProtein }) {
+function Analysis(props) {
+    let targetCalories = parseInt(props.basics.TDEE)
+    let targetProtein = parseInt(props.basics.weight)
+    
+    if (props.goal === 'cut') {
+        targetCalories *= 0.75
+        targetProtein *= 1.1
+    } else if (props.goal === 'bulk') {
+        targetCalories *= 1.1
+    }
+
+    let [dietCalories, dietProtein] = [0,0]
+    for (let meal of props.meals) {
+        dietCalories += parseInt(meal.calories)
+        dietProtein += parseInt(meal.protein)
+    }
+
     let calorieDifference = targetCalories - dietCalories
     let proteinDifference = targetProtein - dietProtein
     
@@ -18,10 +34,8 @@ function Analysis({ targetCalories, targetProtein, dietCalories, dietProtein }) 
 
 function mapStateToProps(state) {
     return {
-        targetCalories: state.basics.targetCalories,
-        targetProtein: state.basics.targetProtein,
-        dietCalories: state.diet.calories,
-        dietProtein: state.diet.protein
+        basics: state.basics,
+        meals: state.meals
     }
 }
 

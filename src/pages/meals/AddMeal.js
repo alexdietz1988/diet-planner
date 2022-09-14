@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import Submit from '../components/Submit'
-import { editMeal } from '../apis/backend'
+import Submit from '../../components/Submit'
+import { createMeal } from '../../actions/meals'
 
-let EditMeal = (props) => {
+let AddMeal = (props) => {
     let navigate = useNavigate()
 
     function onSubmit(formValues) {
-        editMeal(props.user, props.selectedMeal.id, formValues)
+        props.createMeal(formValues)
             .then(({ data }) => {
                 if (data === 'success') navigate('/your-diet')
             })
@@ -26,9 +26,10 @@ let EditMeal = (props) => {
         )
     }
 
-    return(
+    return (
+        <>
+        <h4 className='title is-4'>Add a meal</h4>
         <section className='section'>
-            <h4 className='title is-4'>Edit meal</h4>
             <form onSubmit={props.handleSubmit(onSubmit)}>
                 <Field name='name' label='Name' component={renderInput} />
                 <Field name='calories' label='Calories' type='number' component={renderInput} />
@@ -36,16 +37,9 @@ let EditMeal = (props) => {
                 <Submit cancel='/your-diet'/>
             </form>
         </section>
+        </>
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.user,
-        selectedMeal: state.selectedMeal,
-        initialValues: state.selectedMeal
-    }
-}
-
-EditMeal = reduxForm({form: 'mealForm'})(EditMeal)
-export default connect(mapStateToProps)(EditMeal)
+AddMeal = reduxForm({form: 'addMeal'})(AddMeal)
+export default connect(null, { createMeal })(AddMeal)

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { selectMeal } from '../../../actions'
+import { deleteMeal } from '../../../actions/meals'
 
-function TableTop({ meals, selectMeal, deleteMeal }) {
+function TableTop(props) {
     return(
         <>
         <thead>
@@ -15,16 +15,15 @@ function TableTop({ meals, selectMeal, deleteMeal }) {
         </thead>
         
         <tbody>
-            {meals.map(meal => (
+            {props.meals.map(meal => (
                 <tr key={meal._id}>
                     <td>{meal.name}</td><td>{meal.calories}</td><td>{meal.protein} g</td>
                     <td>
                         <div className='tags'>
-                            <Link to='/edit-meal' onClick={() => selectMeal(
-                                {id: meal._id, name: meal.name, calories: meal.calories, protein: meal.protein})}>
+                            <Link to={`/edit-meal/${meal._id}`}>
                                 <div className='tag is-warning mx-1'>Edit</div>
                             </Link>
-                            <a className='tag is-danger mx-1' onClick={() => deleteMeal(meal._id)}>Delete</a>
+                            <a className='tag is-danger mx-1' onClick={() => props.deleteMeal(meal._id)}>Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -38,7 +37,7 @@ function TableTop({ meals, selectMeal, deleteMeal }) {
 }
 
 function mapStateToProps(state) {
-    return { meals: state.diet.meals }
+    return { meals: state.meals }
 }
 
-export default connect(mapStateToProps, { selectMeal })(TableTop)
+export default connect(mapStateToProps, { deleteMeal })(TableTop)

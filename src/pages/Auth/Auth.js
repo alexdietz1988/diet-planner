@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
 
 import AuthForm from './AuthForm'
-import { login } from '../../actions'
+import { login } from '../../actions/auth'
 import { useEffect } from 'react'
 
 function Auth(props) {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { logout } from '../actions'
+import { logout } from '../actions/auth'
 
 function Header(props) {
 

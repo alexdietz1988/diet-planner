@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import BasicsUI from './BasicsUI'
-import { fetchBasics } from '../../apis/backend'
-import { setBasics } from '../../actions'
+import { fetchBasics } from '../../actions/basics'
 
 function Basics({ setBasics, user}) {
     function getBasics() {
@@ -26,4 +25,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { setBasics })(Basics)
+export default connect(mapStateToProps, { fetchBasics })(Basics)
