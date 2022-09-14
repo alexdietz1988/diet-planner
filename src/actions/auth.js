@@ -3,14 +3,10 @@ import { diet } from '../apis/backend'
 
 export const login = (page, formData) => async dispatch => {
     const response = await diet.post(`auth/${page}`, formData)
-    let payload
-    
-    if (['invalid username or password', 'user already exists'].includes(response.data)) {
-        payload = { "warning": response.data }
-    } else if (response.data === 'success') {
-        payload = { "user": formData.user }
-    } else payload = { "warning": response }
-
+    console.log(response)
+    let payload = {}
+    response.data.success ? payload.user = formData.user : payload.error = response.data.error
+    console.log(payload)
     dispatch({ type: LOGIN, payload})
 }
 

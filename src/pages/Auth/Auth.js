@@ -13,9 +13,7 @@ function Auth(props) {
         dispatch(login(props.page, formValues))
     }
 
-    useEffect(() => {
-        if (props.isSignedIn) navigate('/basics')
-    }, [props.isSignedIn])
+    useEffect(() => {if (props.isSignedIn) navigate('/basics')}, [props.isSignedIn])
 
     return (
         <>

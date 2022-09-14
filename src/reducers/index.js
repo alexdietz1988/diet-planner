@@ -10,8 +10,8 @@ import {
 function authReducer(auth = { isSignedIn: false }, action) {
     switch(action.type) {
         case LOGIN:
-            if (action.payload.warning) {
-                return { isSignedIn: false, warning: action.payload.warning}
+            if (action.payload.error) {
+                return { isSignedIn: false, error: action.payload.error}
             } else return { isSignedIn: true, user: action.payload.user }
         case LOGOUT:
             return { isSignedIn: false }

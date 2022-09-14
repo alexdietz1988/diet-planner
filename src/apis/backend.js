@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+// 'https://dietplanner-backend.herokuapp.com/'
+
 export const diet = axios.create({
-    baseURL: 'https://dietplanner-backend.herokuapp.com/'
+    baseURL: 'http://localhost:4000/'
 })

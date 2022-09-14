@@ -15,7 +15,7 @@ function renderInput(props) {
 function AuthForm(props) {
     return (
         <form onSubmit={props.handleSubmit(props.onSubmit)}>
-            <Field name='username' component={renderInput} label='Username' />
+            <Field name='user' component={renderInput} label='Username' />
             {props.warningMessage === 'user already exists' ? 
                 <p className='help is-danger'>There's already an account with that username. If it's you, please login; otherwise, enter a different username.</p>
                 : ''}
