@@ -6,7 +6,6 @@ export const login = (page, formData) => async dispatch => {
     console.log(response)
     let payload = {}
     response.data.success ? payload.user = formData.user : payload.error = response.data.error
-    console.log(payload)
     dispatch({ type: LOGIN, payload})
 }
 
