@@ -4,6 +4,11 @@ import { connect } from 'react-redux'
 import { deleteMeal } from '../../../actions/meals'
 
 function TableTop(props) {
+    let meals = []
+    for (let meal in props.meals) {
+        meals.push(props.meals[meal])
+    }
+
     return(
         <>
         <thead>
@@ -29,11 +34,17 @@ function TableTop(props) {
                 </tr>
             ))}
             <tr>
-                <td><Link to='/add-meal'><button className='button is-small is-info'>Add a meal</button></Link></td>
+                <td><Link to='/meals/new'><button className='button is-small is-info'>Add a meal</button></Link></td>
             </tr>
         </tbody>
         </>
     )
 }
 
-export default connect(null, { deleteMeal })(TableTop)
+function mapStateToProps(state) {
+    return {
+        meals: state.meals.data
+    }
+}
+
+export default connect(mapStateToProps, { deleteMeal })(TableTop)

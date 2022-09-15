@@ -18,10 +18,10 @@ function basicsReducer(basics = basicsDefault, action) {
                     calories: parseInt(data.TDEE),
                     protein: parseInt(data.weight)
                 }
-                if (props.goal === 'cut') {
+                if (data.goal === 'cut') {
                     targets.calories *= 0.75
                     targets.protein *= 1.1
-                } else if (props.goal === 'bulk') {
+                } else if (data.goal === 'bulk') {
                     targets.calories *= 1.1
                 }
 
