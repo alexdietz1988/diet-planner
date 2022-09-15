@@ -5,7 +5,7 @@ export const fetchBasics = () => async (dispatch, getState) => {
     const user = getState().auth.user
     const response = await diet.get(`basics/?user=${user}`)
     console.log(response)
-    dispatch({ type: FETCH_BASICS, payload: response.data})
+    dispatch({ type: FETCH_BASICS, payload: response.data.basics})
 }
 
 export const editBasics = formData => async (dispatch, getState) => {

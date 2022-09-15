@@ -11,10 +11,10 @@ function authReducer(auth = { isSignedIn: false, user: '', error: '' }, action) 
     switch(action.type) {
         case LOGIN:
             if (action.payload.error) {
-                return { isSignedIn: false, user: '', error: action.payload.error}
-            } else return { isSignedIn: true, user: action.payload.user, error: '' }
+                return { ...auth, error: action.payload.error}
+            } else return { ...auth, isSignedIn: true, user: action.payload.user }
         case LOGOUT:
-            return { isSignedIn: false }
+            return { isSignedIn: false, user: '', error: '' }
     }
     return auth
 }
