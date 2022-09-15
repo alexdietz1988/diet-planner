@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { editBasics } from '../../actions/basics'
 import EditBasicsUI from './EditBasicsUI'
 
 function EditBasicsForm(props) {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
 
     function onSubmit(formValues) {
-        dispatch(props.editBasics(formValues))
+        props.editBasics(formValues)
         navigate('/basics')
     }
 

@@ -1,18 +1,18 @@
 import { Field, reduxForm } from 'redux-form'
 import Submit from '../../components/Submit'
 
-function EditBasicsUI(props) {
-    function renderInput(props) {
-        return(
-            <div className='field'>
-                <label className='label' htmlFor={props.input.name}>{props.label}</label>
-                <div className='control'>
-                    <input className='input' type='number' {...props.input} required/>
-                </div>
+function renderInput(props) {
+    return(
+        <div className='field'>
+            <label className='label' htmlFor={props.input.name}>{props.label}</label>
+            <div className='control'>
+                <input className='input' type='number' {...props.input} required/>
             </div>
-        )
-    }
+        </div>
+    )
+}
 
+function EditBasicsUI(props) {
     return (
         <>
         <h4 className='title is-4'>Edit your basics</h4>

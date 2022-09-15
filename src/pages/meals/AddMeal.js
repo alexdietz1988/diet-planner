@@ -4,26 +4,23 @@ import { Field, reduxForm } from 'redux-form'
 import Submit from '../../components/Submit'
 import { createMeal } from '../../actions/meals'
 
+function renderInput(props) {
+    return(
+        <div className='field'>
+            <label className='label'>{props.label}</label>
+            <div className='control'>
+                <input className='input' {...props.input} required/>
+            </div>
+        </div>
+    )
+}
+
 let AddMeal = (props) => {
     let navigate = useNavigate()
 
     function onSubmit(formValues) {
         props.createMeal(formValues)
-            .then(({ data }) => {
-                if (data === 'success') navigate('/your-diet')
-            })
-            .catch((error) => console.log(error))
-    }
-
-    function renderInput(props) {
-        return(
-            <div className='field'>
-                <label className='label'>{props.label}</label>
-                <div className='control'>
-                    <input className='input' {...props.input} required/>
-                </div>
-            </div>
-        )
+        navigate('/your-diet')
     }
 
     return (

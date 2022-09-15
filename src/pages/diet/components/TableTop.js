@@ -4,11 +4,6 @@ import { connect } from 'react-redux'
 import { deleteMeal } from '../../../actions/meals'
 
 function TableTop(props) {
-    let meals = []
-    for (let meal in props.meals) {
-        meals.push(props.meals[meal])
-    }
-
     return(
         <>
         <thead>
@@ -20,12 +15,12 @@ function TableTop(props) {
         </thead>
         
         <tbody>
-            {meals.map(meal => (
+            {props.meals.map(meal => (
                 <tr key={meal._id}>
                     <td>{meal.name}</td><td>{meal.calories}</td><td>{meal.protein} g</td>
                     <td>
                         <div className='tags'>
-                            <Link to={`/edit-meal/${meal._id}`}>
+                            <Link to={`/meals/edit/${meal._id}`}>
                                 <div className='tag is-warning mx-1'>Edit</div>
                             </Link>
                             <a className='tag is-danger mx-1' onClick={() => props.deleteMeal(meal._id)}>Delete</a>

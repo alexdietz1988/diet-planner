@@ -1,10 +1,11 @@
 import _ from 'lodash'
-import { CREATE_MEAL, EDIT_MEAL, DELETE_MEAL, FETCH_MEALS } from '../actions/types'
+import { CREATE_MEAL, EDIT_MEAL, DELETE_MEAL, FETCH_MEALS, FETCH_MEAL } from '../actions/types'
 
 const mealsDefault = {
     error: '',
     data: {},
-    diet: { calories: 0, protein: 0 }
+    diet: { calories: 0, protein: 0 },
+    selectedMeal: {}
 }
 
 function mealsReducer(meals = mealsDefault, action) {
@@ -17,11 +18,17 @@ function mealsReducer(meals = mealsDefault, action) {
                     calories: 0,
                     protein: 0
                 }
-                for (let meal in action.payload.data) {
+                for (let meal of action.payload.data) {
                     diet.calories += parseInt(meal.calories)
                     diet.protein += parseInt(meal.protein)
                 }
                 return { error: '', data: action.payload.data, diet}
+            }
+        case FETCH_MEAL:
+            if (!action.payload.success) {
+                return {...meals, error: 'Error retrieving meals'}
+            } else {
+                return {...meals, error: '', selectedMeal: action.payload.data}
             }
     }
     return meals
