@@ -1,6 +1,6 @@
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import Submit from '../../components/Submit'
+import Submit from '../Submit'
 
 function renderInput(props) {
     return (

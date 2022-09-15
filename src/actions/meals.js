@@ -7,7 +7,7 @@ export const createMeal = formData => async (dispatch, getState) => {
     dispatch({ type: CREATE_MEAL, payload: formData })
 }
 
-export const fetchMeal = (mealId) => async (dispatch) => {
+export const fetchMeal = mealId => async dispatch => {
     const response = await diet.get(`meal/fetch-meal?id=${mealId}`)
     let payload = { success: false, data: {}}
     if (response.data.success) {

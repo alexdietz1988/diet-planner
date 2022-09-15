@@ -1,5 +1,5 @@
 import { Field, reduxForm } from 'redux-form'
-import Submit from '../../components/Submit'
+import Submit from '../Submit'
 
 function renderInput(props) {
     return(

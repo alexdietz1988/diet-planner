@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import Submit from '../../components/Submit'
+import Submit from '../Submit'
 import { fetchMeal, deleteMeal } from '../../actions/meals'
 import { useEffect } from 'react'
 

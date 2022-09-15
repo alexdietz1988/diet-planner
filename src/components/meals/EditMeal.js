@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import Submit from '../../components/Submit'
-import { createMeal } from '../../actions/meals'
+import Submit from '../Submit'
+import { fetchMeal, editMeal } from '../../actions/meals'
+import { useEffect } from 'react'
 
 function renderInput(props) {
     return(
@@ -15,28 +16,35 @@ function renderInput(props) {
     )
 }
 
-let AddMeal = (props) => {
-    let navigate = useNavigate()
+let EditMeal = (props) => {
+    const navigate = useNavigate()
+
+    let mealId = useParams().id
+    useEffect(() => {props.fetchMeal(mealId)}, [])
 
     function onSubmit(formValues) {
-        props.createMeal(formValues)
+        props.editMeal(formValues)
         navigate('/your-diet')
     }
 
-    return (
-        <>
-        <h4 className='title is-4'>Add a meal</h4>
+    return(
         <section className='section'>
+            <h4 className='title is-4'>Edit meal</h4>
             <form onSubmit={props.handleSubmit(onSubmit)}>
                 <Field name='name' label='Name' component={renderInput} />
                 <Field name='calories' label='Calories' type='number' component={renderInput} />
                 <Field name='protein' label='Protein' type='number' component={renderInput} />
-                <Submit submitText='Add Meal' cancel='/your-diet'/>
+                <Submit submitText='Save Changes' cancel='/your-diet'/>
             </form>
         </section>
-        </>
     )
 }
 
-AddMeal = reduxForm({form: 'addMeal'})(AddMeal)
-export default connect(null, { createMeal })(AddMeal)
+function mapStateToProps(state) {
+    return {
+        initialValues: state.meals.selectedMeal
+    }
+}
+
+EditMeal = reduxForm({form: 'mealForm'})(EditMeal)
+export default connect(mapStateToProps, { editMeal, fetchMeal })(EditMeal)

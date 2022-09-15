@@ -6,7 +6,7 @@ import TableFooter from './components/TableFooter'
 import Analysis from './components/Analysis'
 import TableTop from './components/TableTop'
 
-function YourDiet(props) {
+function Meals(props) {
     useEffect(() => {props.fetchMeals()}, [])
 
     return (
@@ -23,4 +23,4 @@ function YourDiet(props) {
     )
 }
 
-export default connect(null, { fetchMeals })(YourDiet)
+export default connect(null, { fetchMeals })(Meals)

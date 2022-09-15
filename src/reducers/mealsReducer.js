@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { CREATE_MEAL, EDIT_MEAL, DELETE_MEAL, FETCH_MEALS, FETCH_MEAL } from '../actions/types'
+import { FETCH_MEALS, FETCH_MEAL } from '../actions/types'
 
 const mealsDefault = {
     error: '',
