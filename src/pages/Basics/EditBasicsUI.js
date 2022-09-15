@@ -34,7 +34,7 @@ function EditBasicsUI(props) {
                     </div>
                 </div>
             </div>
-            <Submit cancel='/basics'/>
+            <Submit submitText='Save Changes' cancel='/basics'/>
         </form>
         </>
     )

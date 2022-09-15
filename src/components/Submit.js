@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
 
-function Submit({ cancel }) {
+function Submit(props) {
+    let submitColor = props.submitColor ? props.submitColor : 'is-link'
+
     return(
         <div className='field is-grouped'>
-                <div className='control'>
-                    <input className='button is-link' type='submit' value='Submit' />
-                </div>
-                <div className='control'>
-                    <Link className='button is-light' to={cancel}>Cancel</Link>
-                </div>
+            <div className='control'>
+                <input className={`button ${submitColor}`} type='submit' value={props.submitText}/>
+            </div>
+            <div className='control'>
+                <Link className='button is-light' to={props.cancel}>Cancel</Link>
+            </div>
         </div>
     )
 }

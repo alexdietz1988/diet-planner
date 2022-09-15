@@ -34,7 +34,7 @@ let EditMeal = (props) => {
                 <Field name='name' label='Name' component={renderInput} />
                 <Field name='calories' label='Calories' type='number' component={renderInput} />
                 <Field name='protein' label='Protein' type='number' component={renderInput} />
-                <Submit cancel='/your-diet'/>
+                <Submit submitText='Save Changes' cancel='/your-diet'/>
             </form>
         </section>
     )

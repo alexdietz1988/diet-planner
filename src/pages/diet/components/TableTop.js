@@ -23,7 +23,9 @@ function TableTop(props) {
                             <Link to={`/meals/edit/${meal._id}`}>
                                 <div className='tag is-warning mx-1'>Edit</div>
                             </Link>
-                            <a className='tag is-danger mx-1' onClick={() => props.deleteMeal(meal._id)}>Delete</a>
+                            <Link to={`/meals/delete/${meal._id}`}>
+                                <div className='tag is-danger mx-1'>Delete</div>
+                            </Link>
                         </div>
                     </td>
                 </tr>

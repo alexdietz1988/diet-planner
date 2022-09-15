@@ -9,6 +9,7 @@ import EditBasics from './pages/basics/EditBasics'
 import YourDiet from './pages/diet/YourDiet'
 import AddMeal from './pages/meals/AddMeal'
 import EditMeal from './pages/meals/EditMeal'
+import DeleteMeal from './pages/meals/DeleteMeal'
 
 function App(props) {
   function renderUserRoutes() {
@@ -22,11 +23,16 @@ function App(props) {
           
           <Route path='meals/new' element={<AddMeal />} />
           <Route path='meals/edit/:id' element={<EditMeal />} />
+          <Route path='meals/delete/:id' element={<DeleteMeal />} />
         </>
       )
     } else {
       return (
-        <Route path='/:anything' element={<Landing />} />
+        <>
+        <Route path='/:x' element={<Landing />} />
+        <Route path='meals/edit/:id' element={<Landing />} />
+        <Route path='/meals/delete/:id' element={<Landing />} />
+        </>
       )
     }
   }

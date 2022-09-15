@@ -3,9 +3,9 @@ import { CREATE_MEAL, EDIT_MEAL, DELETE_MEAL, FETCH_MEALS, FETCH_MEAL } from '..
 
 const mealsDefault = {
     error: '',
-    data: {},
+    data: [],
     diet: { calories: 0, protein: 0 },
-    selectedMeal: {}
+    selectedMeal: { name: '', calories: '0', protein: '0'}
 }
 
 function mealsReducer(meals = mealsDefault, action) {
@@ -22,7 +22,7 @@ function mealsReducer(meals = mealsDefault, action) {
                     diet.calories += parseInt(meal.calories)
                     diet.protein += parseInt(meal.protein)
                 }
-                return { error: '', data: action.payload.data, diet}
+                return { ...meals, error: '', data: action.payload.data}
             }
         case FETCH_MEAL:
             if (!action.payload.success) {
