@@ -1,20 +1,19 @@
-import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import Submit from '../../components/Submit'
 
-function renderInput(props) {
-    return(
-        <div className='field'>
-            <label className='label' htmlFor={props.input.name}>{props.label}</label>
-            <div className='control'>
-                <input className='input' type='number' {...props.input} required/>
+function EditBasicsUI(props) {
+    function renderInput(props) {
+        return(
+            <div className='field'>
+                <label className='label' htmlFor={props.input.name}>{props.label}</label>
+                <div className='control'>
+                    <input className='input' type='number' {...props.input} required/>
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
 
-let EditBasicsUI = (props) => {
-    return(
+    return (
         <>
         <h4 className='title is-4'>Edit your basics</h4>
         <form onSubmit={props.handleSubmit(props.onSubmit)}>
@@ -41,5 +40,4 @@ let EditBasicsUI = (props) => {
     )
 }
 
-EditBasicsUI = reduxForm({form: 'editBasics'})(EditBasicsUI)
-export default connect(state => ({initialValues: state.basics}))(EditBasicsUI)
+export default reduxForm({form: 'editBasics'})(EditBasicsUI)

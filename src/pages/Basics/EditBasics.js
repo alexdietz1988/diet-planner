@@ -1,25 +1,22 @@
 import { useNavigate } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
-
-import EditBasicsUI from './EditBasicsUI'
 import { editBasics } from '../../actions/basics'
+import EditBasicsUI from './EditBasicsUI'
 
-function EditBasics() {
+function EditBasicsForm(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     function onSubmit(formValues) {
-        dispatch(editBasics(formValues))
+        dispatch(props.editBasics(formValues))
         navigate('/basics')
     }
 
-    return <EditBasicsUI onSubmit={onSubmit} />
+    return <EditBasicsUI initialValues={props.initialValues} onSubmit={onSubmit} />
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.user
-    }
+    return { initialValues: state.basics.data }
 }
 
-export default connect(mapStateToProps, { editBasics })(EditBasics)
+export default connect(mapStateToProps, { editBasics })(EditBasicsForm)

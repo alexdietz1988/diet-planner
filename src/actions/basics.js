@@ -4,7 +4,6 @@ import { diet } from '../apis/backend'
 export const fetchBasics = () => async (dispatch, getState) => {
     const user = getState().auth.user
     const response = await diet.get(`basics/?user=${user}`)
-    console.log(response)
     let payload = { success: false, data: {}}
     if (response.data.success) {
         payload.success = true

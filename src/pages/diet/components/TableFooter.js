@@ -1,5 +1,3 @@
-import { connect } from 'react-redux'
-
 function TableFooter({targetCalories, targetProtein, dietCalories, dietProtein}) {
     let calorieColor = dietCalories < targetCalories ? 'success' : 'danger'
     let proteinColor = dietProtein < targetProtein ? 'danger' : 'success'
@@ -26,13 +24,4 @@ function TableFooter({targetCalories, targetProtein, dietCalories, dietProtein})
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        targetCalories: state.basics.targetCalories,
-        targetProtein: state.basics.targetProtein,
-        dietCalories: state.diet.calories,
-        dietProtein: state.diet.protein
-    }
-}
-
-export default connect(mapStateToProps)(TableFooter)
+export default TableFooter

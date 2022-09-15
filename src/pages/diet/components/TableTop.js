@@ -15,7 +15,7 @@ function TableTop(props) {
         </thead>
         
         <tbody>
-            {props.meals.map(meal => (
+            {meals.map(meal => (
                 <tr key={meal._id}>
                     <td>{meal.name}</td><td>{meal.calories}</td><td>{meal.protein} g</td>
                     <td>
@@ -36,8 +36,4 @@ function TableTop(props) {
     )
 }
 
-function mapStateToProps(state) {
-    return { meals: state.meals }
-}
-
-export default connect(mapStateToProps, { deleteMeal })(TableTop)
+export default connect(null, { deleteMeal })(TableTop)

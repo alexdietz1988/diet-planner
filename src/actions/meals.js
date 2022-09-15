@@ -23,6 +23,10 @@ export const deleteMeal = () => async (dispatch, getState) => {
 export const fetchMeals = () => async (dispatch, getState) => {
     const user = getState().auth.user
     const response = await diet.get(`meal/?user=${user}`)
-    dispatch({ type: FETCH_MEALS, payload: response.data })
+    let payload = { success: false, data: {}}
+    if (response.data.success) {
+        payload.success = true
+        payload.data = response.data.meals
+    }
+    dispatch({ type: FETCH_MEALS, payload })
 }
-
