@@ -7,12 +7,12 @@ import {
     CREATE_MEAL, EDIT_MEAL, DELETE_MEAL, FETCH_MEALS
     } from '../actions/types'
 
-function authReducer(auth = { isSignedIn: false }, action) {
+function authReducer(auth = { isSignedIn: false, user: '', error: '' }, action) {
     switch(action.type) {
         case LOGIN:
             if (action.payload.error) {
-                return { isSignedIn: false, error: action.payload.error}
-            } else return { isSignedIn: true, user: action.payload.user }
+                return { isSignedIn: false, user: '', error: action.payload.error}
+            } else return { isSignedIn: true, user: action.payload.user, error: '' }
         case LOGOUT:
             return { isSignedIn: false }
     }

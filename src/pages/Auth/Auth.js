@@ -18,15 +18,14 @@ function Auth(props) {
     return (
         <>
         <h4 className='title is-4'>{props.page[0].toUpperCase() + props.page.slice(1)}</h4>
-        <AuthForm onSubmit={onSubmit} warningMessage={props.warning} />
+        <AuthForm onSubmit={onSubmit} />
         </>
     )
 }
 
 function mapStateToProps(state) {
     return { 
-        isSignedIn: state.auth.isSignedIn,
-        warning: state.auth.warning
+        isSignedIn: state.auth.isSignedIn
     }
 }
 
