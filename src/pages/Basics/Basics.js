@@ -15,13 +15,13 @@ function Basics(props) {
                 <p>Your current goal is to <b>{props.basics.goal}</b>.</p>
             </div>
             
-            <Link to='/edit-basics'><button className='button is-warning'>Update</button></Link>
+            <Link to='/basics/edit'><button className='button is-warning'>Update</button></Link>
         </section>
     )
 }
 
 function mapStateToProps(state) {
-    return {basics: state.basics}
+    return {basics: state.basics.data}
 }
 
 export default connect(mapStateToProps, { fetchBasics })(Basics)

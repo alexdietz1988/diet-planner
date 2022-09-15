@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form'
 import Submit from '../../components/Submit'
 
 function renderInput(props) {
-
     return(
         <div className='field'>
             <label className='label' htmlFor={props.input.name}>{props.label}</label>

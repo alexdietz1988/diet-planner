@@ -19,12 +19,20 @@ function authReducer(auth = { isSignedIn: false, user: '', error: '' }, action) 
     return auth
 }
 
-function basicsReducer(basics = {weight: 0, goal: 'maintain', TDEE: 0}, action) {
+function basicsReducer(basics = { error: '', data: { weight: 0, goal: 'maintain', TDEE: 0 }}, action) {
     switch (action.type) {
         case FETCH_BASICS:
-            return action.payload
+            if (action.payload.success) {
+                return { ...basics, data: action.payload.data }
+            } else {
+                return {...basics, error: action.payload.error}
+            }
         case EDIT_BASICS:
-            return action.payload
+            if (action.payload.success) {
+                return { ...basics, data: action.payload.data }
+            } else {
+                return { ...basics, error: action.payload.error }
+            }
     }
     return basics
 }

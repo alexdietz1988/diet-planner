@@ -4,15 +4,12 @@ import { connect } from 'react-redux'
 import EditBasicsUI from './EditBasicsUI'
 import { editBasics } from '../../actions/basics'
 
-function EditBasics({ user }) {
+function EditBasics() {
     let navigate = useNavigate()
 
     function onSubmit(formValues) {
         editBasics(formValues)
-            .then(({ data }) => {
-                if (data === 'success') navigate('/basics')
-            })
-            .catch((error) => console.log(error))
+        navigate('/basics')
     }
 
     return <EditBasicsUI onSubmit={onSubmit} />
@@ -24,4 +21,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(EditBasics)
+export default connect(mapStateToProps, { editBasics })(EditBasics)
