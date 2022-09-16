@@ -24,7 +24,7 @@ export const editMeal = formData => async (dispatch, getState) => {
     dispatch({ type: EDIT_MEAL, payload: formData})
 }
 
-export const deleteMeal = (mealId) => async (dispatch, getState) => {
+export const deleteMeal = mealId => async dispatch => {
     await diet.delete(`meal/?id=${mealId}`)
     dispatch({ type: DELETE_MEAL })
 }

@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import Submit from '../Submit'
 import { fetchMeal, editMeal } from '../../actions/meals'
-import { useEffect } from 'react'
 
 function renderInput(props) {
     return(
@@ -20,11 +20,11 @@ let EditMeal = (props) => {
     const navigate = useNavigate()
 
     let mealId = useParams().id
-    useEffect(() => {props.fetchMeal(mealId)}, [])
+    useEffect(() => props.fetchMeal(mealId), [])
 
     function onSubmit(formValues) {
         props.editMeal(formValues)
-        navigate('/meals')
+            .then(navigate('/meals'))
     }
 
     return(

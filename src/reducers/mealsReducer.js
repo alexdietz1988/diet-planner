@@ -5,7 +5,7 @@ const mealsDefault = {
     error: '',
     data: [],
     diet: { calories: 0, protein: 0 },
-    selectedMeal: { name: '', calories: '0', protein: '0'}
+    selectedMeal: { name: '', calories: '0', protein: '0' }
 }
 
 function mealsReducer(meals = mealsDefault, action) {

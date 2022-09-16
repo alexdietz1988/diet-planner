@@ -20,7 +20,7 @@ let AddMeal = (props) => {
 
     function onSubmit(formValues) {
         props.createMeal(formValues)
-        navigate('/meals')
+            .then(navigate('/meals'))
     }
 
     return (
