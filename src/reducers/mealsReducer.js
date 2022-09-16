@@ -1,4 +1,4 @@
-import { FETCH_MEALS, FETCH_MEAL } from '../actions/types'
+import { FETCH_MEALS, FETCH_MEAL, EDIT_MEAL, CREATE_MEAL } from '../actions/types'
 
 const mealsDefault = {
     data: [],
@@ -32,6 +32,24 @@ function mealsReducer(meals = mealsDefault, action) {
                 return {
                     ...meals,
                     selectedMeal: action.payload.data
+                }
+            }
+        case EDIT_MEAL:
+            if (!action.payload.success) {
+                return meals
+            } else {
+                return {
+                    ...meals,
+                    fetchCount: meals.fetchCount + 1
+                }
+            }
+        case CREATE_MEAL:
+            if (!action.payload.success) {
+                return meals
+            } else {
+                return {
+                    ...meals,
+                    fetchCount: meals.fetchCount + 1
                 }
             }
     }
