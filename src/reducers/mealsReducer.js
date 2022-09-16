@@ -22,7 +22,7 @@ function mealsReducer(meals = mealsDefault, action) {
                     diet.calories += parseInt(meal.calories)
                     diet.protein += parseInt(meal.protein)
                 }
-                return { ...meals, error: '', data: action.payload.data}
+                return { ...meals, error: '', data: action.payload.data, diet}
             }
         case FETCH_MEAL:
             if (!action.payload.success) {
