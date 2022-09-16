@@ -13,16 +13,16 @@ function DeleteMeal(props) {
 
     function onSubmit() {
         props.deleteMeal(mealId)
-        navigate('/meals')
+            .then(navigate('/meals'))
     }
 
     return(
         <section className='section'>
-        <h4 className='title is-4'>Are you sure you want to delete &#8220;{props.selectedMeal.name}&#8221;?</h4>
-        <form onSubmit={props.handleSubmit(onSubmit)}>
-            <Submit submitText='Yes, Delete It' submitColor='is-danger' cancel='/meals'/>
-        </form>
-    </section>
+            <h4 className='title is-4'>Are you sure you want to delete &#8220;{props.selectedMeal.name}&#8221;?</h4>
+            <form onSubmit={props.handleSubmit(onSubmit)}>
+                <Submit submitText='Yes, Delete It' submitColor='is-danger' cancel='/meals'/>
+            </form>
+        </section>
     )
 }
 

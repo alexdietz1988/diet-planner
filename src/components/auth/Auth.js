@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { connect, useDispatch } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 
 import AuthForm from './AuthForm'
 import { login } from '../../actions/auth'
@@ -13,7 +13,12 @@ function Auth(props) {
         dispatch(login(props.page, formValues))
     }
 
-    useEffect(() => {if (props.isSignedIn) navigate('/basics')}, [props.isSignedIn])
+    useEffect(() => {
+        console.log(props.isSignedIn)
+        if (props.isSignedIn) {
+            navigate('/basics')
+        }
+    }, [props.isSignedIn])
 
     return (
         <>
