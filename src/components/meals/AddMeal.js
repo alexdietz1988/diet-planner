@@ -20,7 +20,7 @@ let AddMeal = (props) => {
 
     function onSubmit(formValues) {
         props.createMeal(formValues)
-        navigate('/your-diet')
+        navigate('/meals')
     }
 
     return (
@@ -31,7 +31,7 @@ let AddMeal = (props) => {
                 <Field name='name' label='Name' component={renderInput} />
                 <Field name='calories' label='Calories' type='number' component={renderInput} />
                 <Field name='protein' label='Protein' type='number' component={renderInput} />
-                <Submit submitText='Add Meal' cancel='/your-diet'/>
+                <Submit submitText='Add Meal' cancel='/meals'/>
             </form>
         </section>
         </>
