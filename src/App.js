@@ -29,6 +29,7 @@ function App(props) {
       return (
         <>
         <Route path='/:x' element={<Landing />} />
+        <Route path='/basics/edit/' element={<Landing />} />
         <Route path='/meals/edit/:id' element={<Landing />} />
         <Route path='/meals/delete/:id' element={<Landing />} />
         </>

@@ -1,16 +1,16 @@
 import { FETCH_BASICS, EDIT_BASICS } from '../actions/types'
 
 const basicsDefault = {
-    error: '',
     data: { weight: '0', goal: 'maintain', TDEE: '0' },
-    targets: { calories: '0', protein: '0'}
+    targets: { calories: '0', protein: '0'},
+    fetchCount: 0
 }
 
 function basicsReducer(basics = basicsDefault, action) {
     switch (action.type) {
         case FETCH_BASICS:
             if (!action.payload.success) {
-                return {...basics, error: action.payload.error}
+                return basics
             } else {
                 let data = action.payload.data
                 
@@ -25,11 +25,15 @@ function basicsReducer(basics = basicsDefault, action) {
                     targets.calories *= 1.1
                 }
 
-                return { error: '', data, targets }
+                return { data, targets, fetchCount: basics.fetchCount + 1 }
             }
         case EDIT_BASICS:
             if (!action.payload.success) {
-                return { ...basics, error: action.payload.error }
+                return basics
+            }
+            else return {
+                ...basics,
+                fetchCount: basics.fetchCount + 1
             }
     }
     return basics
