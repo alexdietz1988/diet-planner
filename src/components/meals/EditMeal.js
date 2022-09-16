@@ -2,8 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchMeal, editMeal } from '../../../actions/meals'
-import EditMealUI from './EditMealUI'
+import { fetchMeal, editMeal } from '../../actions/meals'
+import MealForm from './MealForm'
 
 function EditMeal(props) {
     const navigate = useNavigate()
@@ -34,7 +34,7 @@ function EditMeal(props) {
     return (
         <section className='section'>
             <h4 className='title is-4'>Edit meal</h4>
-            {loading ? <div>Loading...</div> : <EditMealUI onSubmit={onSubmit} initialValues={props.selectedMeal} />}
+            {loading ? <div>Loading...</div> : <MealForm onSubmit={onSubmit} initialValues={props.selectedMeal} />}
         </section>
     )
 }

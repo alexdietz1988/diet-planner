@@ -1,5 +1,5 @@
 import { Field, reduxForm } from 'redux-form'
-import Submit from '../../Submit'
+import Submit from '../Submit'
 
 function renderInput(props) {
     return(
@@ -12,7 +12,7 @@ function renderInput(props) {
     )
 }
 
-function EditMealUI(props) {
+function MealForm(props) {
     return(
         <form onSubmit={props.handleSubmit(props.onSubmit)}>
             <Field name='name' label='Name' component={renderInput} />
@@ -23,4 +23,4 @@ function EditMealUI(props) {
     )
 }
 
-export default reduxForm({form: 'mealForm'})(EditMealUI)
+export default reduxForm({form: 'mealForm'})(MealForm)

@@ -7,8 +7,8 @@ import Auth from './components/auth/Auth'
 import Basics from './components/basics/Basics'
 import EditBasics from './components/basics/EditBasics'
 import Meals from './components/meals/meals/Meals'
-import AddMeal from './components/meals/addMeal/AddMeal'
-import EditMeal from './components/meals/editMeal/EditMeal'
+import AddMeal from './components/meals/AddMeal'
+import EditMeal from './components/meals/EditMeal'
 import DeleteMeal from './components/meals/DeleteMeal'
 
 function App(props) {
