@@ -1,4 +1,4 @@
-import { FETCH_MEALS, FETCH_MEAL, EDIT_MEAL, CREATE_MEAL } from '../actions/types'
+import { FETCH_MEALS, FETCH_MEAL, EDIT_MEAL, CREATE_MEAL, DELETE_MEAL } from '../actions/types'
 
 const mealsDefault = {
     data: [],
@@ -8,6 +8,17 @@ const mealsDefault = {
 }
 
 function mealsReducer(meals = mealsDefault, action) {
+    function incrementFetchCount() {
+        if (!action.payload.success) {
+            return meals
+        } else {
+            return {
+                ...meals,
+                fetchCount: meals.fetchCount + 1
+            }
+        }
+    }
+
     switch (action.type) {
         case FETCH_MEALS:
             if (!action.payload.success) {
@@ -31,27 +42,16 @@ function mealsReducer(meals = mealsDefault, action) {
             } else {
                 return {
                     ...meals,
-                    selectedMeal: action.payload.data
+                    selectedMeal: action.payload.data,
+                    fetchCount: meals.fetchCount + 1
                 }
             }
         case EDIT_MEAL:
-            if (!action.payload.success) {
-                return meals
-            } else {
-                return {
-                    ...meals,
-                    fetchCount: meals.fetchCount + 1
-                }
-            }
+            return incrementFetchCount()
         case CREATE_MEAL:
-            if (!action.payload.success) {
-                return meals
-            } else {
-                return {
-                    ...meals,
-                    fetchCount: meals.fetchCount + 1
-                }
-            }
+            return incrementFetchCount()
+        case DELETE_MEAL:
+            return incrementFetchCount()
     }
     return meals
 }

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchMeal, editMeal } from '../../../actions/meals'
@@ -8,20 +8,28 @@ import EditMealUI from './EditMealUI'
 function EditMeal(props) {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true)
+    const [submitted, setSubmitted] = useState(false)
+    const fetchCount = useRef(props.fetchCount)
 
     let mealId = useParams().id
     useEffect(() => {props.fetchMeal(mealId)}, [])
 
     useEffect(() => {
-        if (props.selectedMeal._id === mealId) {
+        if (props.fetchCount > fetchCount.current) {
             setLoading(false)
         }
-    }, [props.selectedMeal])
+    }, [props.fetchCount])
 
     function onSubmit(formValues) {
         props.editMeal(formValues)
-            .then(navigate('/meals'))
+        setSubmitted(true)
     }
+
+    useEffect(() => {
+        if (submitted) {
+            navigate('/meals')
+        }
+    }, [props.fetchCount])
 
     return (
         <section className='section'>
@@ -33,7 +41,8 @@ function EditMeal(props) {
 
 function mapStateToProps(state) {
     return {
-        selectedMeal: state.meals.selectedMeal
+        selectedMeal: state.meals.selectedMeal,
+        fetchCount: state.meals.fetchCount
     }
 }
 
