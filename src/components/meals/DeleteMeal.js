@@ -3,18 +3,25 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import Submit from '../Submit'
 import { fetchMeal, deleteMeal } from '../../actions/meals'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function DeleteMeal(props) {
     const navigate = useNavigate()
+    const [submitted, setSubmitted] = useState(false)
 
     let mealId = useParams().id
     useEffect(() => {props.fetchMeal(mealId)}, [])
 
     function onSubmit() {
         props.deleteMeal(mealId)
-            .then(navigate('/meals'))
+        setSubmitted(true)
     }
+
+    useEffect(() => {
+        if (submitted) {
+            navigate('/meals')
+        }
+    }, [props.fetchCount])
 
     return(
         <section className='section'>
@@ -28,7 +35,8 @@ function DeleteMeal(props) {
 
 function mapStateToProps(state) {
     return {
-        selectedMeal: state.meals.selectedMeal
+        selectedMeal: state.meals.selectedMeal,
+        fetchCount: state.meals.fetchCount
     }
 }
 

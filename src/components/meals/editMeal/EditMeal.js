@@ -9,13 +9,13 @@ function EditMeal(props) {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true)
     const [submitted, setSubmitted] = useState(false)
-    const fetchCount = useRef(props.fetchCount)
+    const initialFetchCount = useRef(props.fetchCount)
 
     let mealId = useParams().id
     useEffect(() => {props.fetchMeal(mealId)}, [])
 
     useEffect(() => {
-        if (props.fetchCount > fetchCount.current) {
+        if (props.fetchCount > initialFetchCount.current) {
             setLoading(false)
         }
     }, [props.fetchCount])
