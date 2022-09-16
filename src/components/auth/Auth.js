@@ -14,7 +14,6 @@ function Auth(props) {
     }
 
     useEffect(() => {
-        console.log(props.isSignedIn)
         if (props.isSignedIn) {
             navigate('/basics')
         }

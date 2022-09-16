@@ -21,7 +21,7 @@ export const editMeal = formData => async (dispatch, getState) => {
     const user = getState().auth.user
     const mealId = getState().meals.selectedMeal._id
     await diet.put(`meal/?id=${mealId}`, {user, ...formData})
-    dispatch({ type: EDIT_MEAL, payload: formData})
+    dispatch({ type: EDIT_MEAL, payload: {...formData, user, _id: mealId} })
 }
 
 export const deleteMeal = mealId => async dispatch => {
