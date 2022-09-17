@@ -1,4 +1,4 @@
-import { Field, reduxForm } from 'redux-form'
+import { Form, Field } from 'react-final-form'
 import Submit from '../Submit'
 
 function renderInput(props) {
@@ -14,13 +14,18 @@ function renderInput(props) {
 
 function MealForm(props) {
     return(
-        <form onSubmit={props.handleSubmit(props.onSubmit)}>
-            <Field name='name' label='Name' component={renderInput} />
-            <Field name='calories' label='Calories' type='number' component={renderInput} />
-            <Field name='protein' label='Protein' type='number' component={renderInput} />
-            <Submit submitText='Save Changes' cancel='/meals'/>
-        </form>
+        <Form
+            initialValues={props.initialValues}
+            onSubmit={props.onSubmit}
+            render={({ handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                    <Field name='name' label='Name' component={renderInput} />
+                    <Field name='calories' label='Calories' type='number' component={renderInput} />
+                    <Field name='protein' label='Protein' type='number' component={renderInput} />
+                    <Submit submitText='Save Changes' cancel='/meals'/>
+                </form>
+            )}/>
     )
 }
 
-export default reduxForm({form: 'mealForm'})(MealForm)
+export default MealForm
