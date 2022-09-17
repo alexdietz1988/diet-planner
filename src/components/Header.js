@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { logout } from '../actions/auth'
 
 function Header(props) {
+    const navigate = useNavigate()
 
     function notSignedIn() {
         return(
@@ -31,7 +32,10 @@ function Header(props) {
 
             <div className="level-right">
                 <div className="level-item"><em className="tag">logged in as {props.user}</em></div>
-                <div className="level-item button"><Link to='/' onClick={() => props.logout()}>Logout</Link></div>
+                <div className="level-item button is-dark" onClick={() => {
+                    props.logout()
+                    navigate('/')
+                }}>Logout</div>
             </div>
             </>
         )
