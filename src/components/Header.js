@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { setUser } from '../actions'
+import { logout } from '../actions/auth'
 
 function Header(props) {
 
@@ -26,12 +26,12 @@ function Header(props) {
             <div className="level-left">
                 <div className="level-item"><Link className="has-text-black" to='/'><b>Diet Planner</b></Link></div>
                 <div className="level-item"><Link to='/basics'>Basics</Link></div>
-                <div className="level-item"><Link to='/your-diet'>Your Diet</Link></div>
+                <div className="level-item"><Link to='/meals'>Your Diet</Link></div>
             </div>
 
             <div className="level-right">
                 <div className="level-item"><em className="tag">logged in as {props.user}</em></div>
-                <div className="level-item button"><Link to='/' onClick={() => props.setUser(null)}>Logout</Link></div>
+                <div className="level-item button"><Link to='/' onClick={() => props.logout()}>Logout</Link></div>
             </div>
             </>
         )
@@ -39,15 +39,16 @@ function Header(props) {
 
     return(
         <nav className="level">
-        {props.user === null ? notSignedIn() : signedIn()}
+        {props.isSignedIn ? signedIn() : notSignedIn()}
         </nav>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.auth.user,
+        isSignedIn: state.auth.isSignedIn
     }
 }
 
-export default connect(mapStateToProps, { setUser })(Header)
+export default connect(mapStateToProps, { logout })(Header)

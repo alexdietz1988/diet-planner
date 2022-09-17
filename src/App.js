@@ -1,15 +1,42 @@
 import { Route, Routes} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Header from './components/Header'
-import Landing from './pages/Landing/Landing'
-import Auth from './pages/Auth/Auth'
-import Basics from './pages/Basics/Basics'
-import EditBasics from './pages/EditBasics/EditBasics'
-import YourDiet from './pages/YourDiet/YourDiet'
-import AddMeal from './pages/AddMeal'
-import EditMeal from './pages/EditMeal'
+import Landing from './components/landing/Landing'
+import Auth from './components/auth/Auth'
+import Basics from './components/basics/Basics'
+import EditBasics from './components/basics/EditBasics'
+import Meals from './components/meals/meals/Meals'
+import AddMeal from './components/meals/AddMeal'
+import EditMeal from './components/meals/EditMeal'
+import DeleteMeal from './components/meals/DeleteMeal'
 
-function App() {
+function App(props) {
+  function renderUserRoutes() {
+    if (props.isSignedIn) {
+      return (
+        <>
+          <Route path='/basics' element={<Basics />} />
+          <Route path='/basics/edit' element={<EditBasics />} />
+
+          <Route path='/meals' element={<Meals />} />
+          <Route path='/meals/new' element={<AddMeal />} />
+          <Route path='/meals/edit/:id' element={<EditMeal />} />
+          <Route path='/meals/delete/:id' element={<DeleteMeal />} />
+        </>
+      )
+    } else {
+      return (
+        <>
+        <Route path='/:x' element={<Landing />} />
+        <Route path='/basics/edit/' element={<Landing />} />
+        <Route path='/meals/edit/:id' element={<Landing />} />
+        <Route path='/meals/delete/:id' element={<Landing />} />
+        </>
+      )
+    }
+  }
+
   return (
     <section className='section'>
       <Header />
@@ -20,14 +47,7 @@ function App() {
 
             <Route path='/signup' element={<Auth page='signup'/>} />
             <Route path='/login' element={<Auth page='login'/>}/>
-
-            <Route path='/basics' element={<Basics />} />
-            <Route path='/edit-basics' element={<EditBasics />} />
-
-            <Route path='/your-diet' element={<YourDiet />} />
-            
-            <Route path='add-meal' element={<AddMeal />} />
-            <Route path='edit-meal' element={<EditMeal />} />
+            {renderUserRoutes()}
           </Routes>
       </section>
 
@@ -35,4 +55,10 @@ function App() {
   )
 }
 
-export default App
+function mapStateToProps(state) {
+  return {
+    isSignedIn: state.auth.isSignedIn
+  }
+}
+
+export default connect(mapStateToProps)(App)

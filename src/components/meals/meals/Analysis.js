@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
-function Analysis({ targetCalories, targetProtein, dietCalories, dietProtein }) {
-    let calorieDifference = targetCalories - dietCalories
-    let proteinDifference = targetProtein - dietProtein
+function Analysis({ diet, targets }) {
+    let calorieDifference = targets.calories - diet.calories
+    let proteinDifference = targets.protein - diet.protein
     
     return (
         <div className='content'>
@@ -18,10 +18,8 @@ function Analysis({ targetCalories, targetProtein, dietCalories, dietProtein }) 
 
 function mapStateToProps(state) {
     return {
-        targetCalories: state.basics.targetCalories,
-        targetProtein: state.basics.targetProtein,
-        dietCalories: state.diet.calories,
-        dietProtein: state.diet.protein
+        diet: state.meals.diet,
+        targets: state.basics.targets
     }
 }
 
