@@ -25,16 +25,12 @@ function App(props) {
           <Route path='/meals/delete/:id' element={<DeleteMeal />} />
         </>
       )
-    } else {
-      return (
-        <>
-        <Route path='/:x' element={<Landing />} />
-        <Route path='/basics/edit/' element={<Landing />} />
-        <Route path='/meals/edit/:id' element={<Landing />} />
-        <Route path='/meals/delete/:id' element={<Landing />} />
-        </>
-      )
-    }
+    } else return (
+        <Route
+          path={'/:x' || '/basics/edit' || 'meals/edit/:id' || 'meals/delete/:id'}
+          element={<Landing />}
+        />
+    )
   }
 
   return (
