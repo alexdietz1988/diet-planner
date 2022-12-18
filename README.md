@@ -3,7 +3,7 @@
 ## Project description
 Diet Planner is an app where bodybuilders can create a daily meal plan with the right amount of calories and protein depending on whether they want to gain muscle, lose fat, or maintain their current physique.
 
-The app is built using React and Redux, and uses Bulma styling. The live app is [here](https://dietplanner.herokuapp.com), and the backend repo is [here](https://github.com/alexdietz1988/diet-planner-backend).
+The app is built using React and Redux, and uses Bulma styling. The backend repo is [here](https://github.com/alexdietz1988/diet-planner-backend).
 
 ## User stories
 1. I want to be able to sign up for an account or log in.
